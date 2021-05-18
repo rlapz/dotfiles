@@ -1,0 +1,54 @@
+#!/bin/sh
+
+DIR=$HOME/Documents/Diary
+EDITOR=vim
+
+[[ ! -d $DIR ]] && mkdir $DIR
+
+cd $DIR
+
+case $1 in
+	"t")
+		DATE=$(date +"%d-%m-%Y")
+
+		if [ ! -f "$DIR/${DATE}.txt" ];
+		then
+			echo "--------------" > $DIR/${DATE}.txt
+			echo "$DATE" >> $DIR/${DATE}.txt
+			echo -e "--------------\n\n" >> $DIR/${DATE}.txt
+		fi
+
+		$EDITOR + $DIR/${DATE}.txt
+		;;
+
+	"y")
+		DATE=$(date --date="yesterday"  +"%d-%m-%Y")
+		$EDITOR $DIR/${DATE}.txt
+		;;
+
+	"h")
+		echo -e "Moe Diary\n"
+		echo "Usage:"
+		echo -e "moediary [Arg]"
+		echo -e " Arg:"
+		echo -e "\tt - edit/new today's diary"
+		echo -e "\ty - edit/new yesterday's diary"
+		echo -e "\th - show help"
+
+		;;
+
+	*)
+		clear
+		for i in $(ls $DIR | sort -r);
+		do
+			echo "[${i##*/}]";
+			if [ $( file -b --mime-type $i | sed 's|/.*||') != "text" ];
+			then
+				echo "-- this file is not a text/encrypted --"
+			else
+				head $DIR/$i;
+			fi
+			echo -e "\n";
+		done | less
+		;;
+esac

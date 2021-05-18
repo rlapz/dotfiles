@@ -1,0 +1,52 @@
+#!/bin/sh
+
+DIR=$HOME/Documents/Notes
+
+[[ ! -d $DIR ]] && mkdir $DIR
+cd $DIR
+
+case $1 in
+	"d")
+		[[ -z $2 ]] && exit
+
+		rm -i $2
+		;;
+
+	"o")
+		if [ -z $2 ];
+		then
+			cd $DIR
+			$EDITOR
+			exit
+		fi
+
+		$EDITOR + $DIR/$2
+		;;
+
+	"h")
+		echo -e "Moe Notes\n"
+		echo "Usage:"
+		echo -e "moenotes [Arg 1] [Arg 2]"
+		echo -e " Arg:"
+		echo -e "\td [filename] - delete note"
+		echo -e "\to [filename] - open/edit note"
+		echo -e "\th            - show help"
+
+		;;
+	*)
+		clear
+		for i in $(ls $DIR);
+		do
+			echo "--------"
+			echo "[${i}]"
+			echo "--------"
+			if [ $( file -b --mime-type $i | sed 's|/.*||') != "text" ];
+			then
+				echo "-- this file is not a text/encrypted --"
+			else
+				cat $DIR/$i
+			fi
+			echo ""
+		done | less
+		;;
+esac
