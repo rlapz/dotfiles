@@ -1,0 +1,19 @@
+#!/bin/sh
+
+CACHE_F="$HOME/.cache/dmenu_dektop"
+DESKTOP_DIR=(
+				"/usr/share/applications"
+				"$HOME/.local/share/applications"
+			)
+
+#FILE_NAME=$(sed -n 's/^Name=//p' $DESKTOP_FILE)
+
+if [ ! -f "$CACHE_F" ]; then
+	for i in ${DESKTOP_DIR[@]}; do
+		cd $i
+		ls *.desktop >> $CACHE_F
+	done
+fi
+
+cat $CACHE_F | sort | dmenu $@ -fn "xos4 Terminus:size=11" -p "->" | xargs gtk-launch 2>/dev/null
+

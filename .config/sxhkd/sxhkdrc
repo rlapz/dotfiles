@@ -1,0 +1,64 @@
+#
+# Spawn programs
+#
+
+
+#mod4 + r
+#    rofi -m -4 -show run
+
+#mod4 + s
+#    rofi -m -4 -show ssh
+
+#mod4 + p
+#    rofi -m -4 -show drun
+#
+mod4 + semicolon
+    clipmenu -m -4 -fn "xos4 Terminus:size=11" -p "Clipboard:"
+
+alt+ ctrl + l
+    locknow
+
+# Brightness
+XF86MonBrightness{Up,Down}
+    brightness {up,down}
+
+# Translator
+mod4 + e
+    st -e trans-cli --clipboard
+
+mod4 + shift + e
+    st -e trans-cli --play
+
+mod4 + shift + i
+    st -e trans-cli --input
+
+# Screenshot
+Print
+    screensh --select
+
+shift + Print
+    screensh --selectwin
+
+# Addtional
+XF86HomePage
+    firefox --private
+
+
+mod4 + shift + p
+    st -e vifm
+
+#
+# Media keys
+#
+
+#XF86Audio{Raise,Lower}Volume
+#    amixer -q sset Master 5%{+,-}
+#
+#XF86AudioMute
+#    amixer -q sset Master toggle
+
+mod4 + shift + {k,j}
+	amixer -q sset Master 1%{+,-}
+
+mod4 + shift + m
+	amixer -q sset Master toggle

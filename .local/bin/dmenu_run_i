@@ -1,0 +1,13 @@
+#!/bin/sh
+# dmenu_run improved
+# if a command ends with "!", it is started in term.
+
+termcmd="st -e"
+test -s $HOME/.dmenurc && . $HOME/.dmenurc 
+cmd="$(dmenu_path | dmenu $@ -fn "xos4 Terminus:size=11" -p "Run:")" 
+case $cmd in 
+	\>* ) surf "https://google.com/search?&q=$(echo $cmd | sed "s/>//")";; 
+	*\! ) ${termcmd} "$(printf "%s" "${cmd}" | cut -d'!' -f1)";; 
+	* ) ${cmd} ;; 
+esac 
+exit
