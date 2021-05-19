@@ -20,7 +20,7 @@ set matchpairs+=<:>
 " Terminal
 set termwinsize=10x0
 cabbrev bterm bo term
-bel bo term
+"bel bo term
 
 " NERDTree
 "autocmd VimEnter * NERDTree
