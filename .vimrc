@@ -2,30 +2,34 @@ colorscheme simple-dark
 
 let g:airline_theme='simple'
 let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#left_sep='|'
+let g:airline#extensions#tabline#left_sep=' '
 
 "set number
 set relativenumber
 set autoindent
-"set hidden
+set hidden
 set textwidth=80
 set formatoptions=tcqrn1
 set tabstop=8
 set colorcolumn=80
 set mouse=a
 set scrolloff=5
-"set wrap
+set wrap
 set matchpairs+=<:>
+
+" Terminal
+set termwinsize=10x0
+cabbrev bterm bo term
+bel bo term
 
 " NERDTree
 "autocmd VimEnter * NERDTree
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * silent NERDTreeMirror
 " Exit Vim if NERDTree is the only window left.
-"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && \
-"\exists('b:NERDTree') && b:NERDTree.isTabTree() |
-    "\ quit | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 nnoremap <C-t> :NERDTreeToggle<CR>
+
 
 
 " imap
