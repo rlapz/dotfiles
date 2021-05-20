@@ -6,6 +6,7 @@ let g:airline#extensions#tabline#left_sep=' '
 
 "set number
 set relativenumber
+set cursorline
 set autoindent
 set hidden
 set textwidth=80
@@ -19,7 +20,7 @@ set matchpairs+=<:>
 
 " Terminal
 set termwinsize=10x0
-cabbrev bterm bo term
+cabbrev bt bo term
 "bel bo term
 
 " NERDTree
@@ -31,7 +32,6 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 
-
 " imap
 imap jj <Esc>
 
@@ -40,6 +40,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'preservim/nerdtree'
+	Plug 'mattn/emmet-vim'
 	"Plug 'stevearc/vim-arduino'
 	"Plug 'dart-lang/dart-vim-plugin'
 	"Plug 'neoclide/coc.nvim', {'branch': 'release'}
