@@ -1,0 +1,9 @@
+colors:
+  primary:
+    background: '#000000'
+    foreground: '#f6f5f4'
+
+font:
+  normal:
+    family: Dina
+  size: 9
