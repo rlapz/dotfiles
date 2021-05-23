@@ -7,7 +7,7 @@ colors:
     foreground  : '#f6f5f4'
 
   normal:
-    black       : '#000000'
+    black       : '#3f3f3f'
     white       : '#f6f5f4'
     blue        : '#0000ff'
     red         : '#ff0000'
