@@ -3,8 +3,17 @@ env:
 
 colors:
   primary:
-    background: '#000000'
-    foreground: '#f6f5f4'
+    background  : '#000000'
+    foreground  : '#f6f5f4'
+
+  normal:
+    black       : '#000000'
+    white       : '#f6f5f4'
+    blue        : '#0000ff'
+    red         : '#ff0000'
+    green       : '#00ff00'
+    magenta     : '#ff00ff'
+    cyan        : '#00ffff'
 
 font:
   normal:
@@ -15,10 +24,9 @@ scrolling:
   history: 5000
 
 window:
-  title: Terminal
   padding:
     x: 2
     y: 2
   dimensions:
-    columns: 65 
-    lines: 22 
+    columns : 65 
+    lines   : 22 
