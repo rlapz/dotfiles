@@ -15,5 +15,5 @@ if [ ! -f "$CACHE_F" ]; then
 	done
 fi
 
-cat $CACHE_F | sort | dmenu $@ -fn "xos4 Terminus:size=11" -p "->" | xargs gtk-launch 2>/dev/null
+cat $CACHE_F | sort | dmenu $@ -i -l 20 -fn "xos4 Terminus:size=11" -p "->" | xargs gtk-launch 2>/dev/null
 

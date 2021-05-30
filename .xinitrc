@@ -19,7 +19,7 @@ export PATH=$HOME/Application:$HOME/.local/bin:/opt/STMicroelectronics/STM32Cube
 export ANDROID_HOME=$HOME/Development/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 
-export TERMINAL="termite"
+export TERMINAL="alacritty"
 export QT_QPA_PLATFORMTHEME=gtk2
 
 
@@ -30,7 +30,7 @@ fcitx-autostart &
 # Statusbar loop
 #~/.xsetroot &
 #uim-xim &
-#mons -e bottom --primary "VGA1"
+mons -e bottom --primary "VGA1"
 
 if [ $WIN_MGR != "spectrwm" ]
 then

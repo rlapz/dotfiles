@@ -4,19 +4,23 @@ let g:airline_theme='simple'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_sep=' '
 
-"set number
-set relativenumber
-set cursorline
-set autoindent
-set hidden
-set textwidth=80
-set formatoptions=tcqrn1
-set tabstop=8
+syntax enable
+filetype plugin indent on
+
+"set autoindent
 set colorcolumn=80
-set mouse=a
-set scrolloff=5
-set wrap
+set cursorline
+"set formatoptions=tcqrn1
 set matchpairs+=<:>
+set mouse=a
+"set number
+set hidden
+set relativenumber
+set scrolloff=5
+set textwidth=80
+set tabstop=8
+set wrap
+
 
 " Terminal
 set termwinsize=10x0
@@ -41,6 +45,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'preservim/nerdtree'
 	Plug 'mattn/emmet-vim'
+	Plug 'rust-lang/rust.vim'
 	"Plug 'stevearc/vim-arduino'
 	"Plug 'dart-lang/dart-vim-plugin'
 	"Plug 'neoclide/coc.nvim', {'branch': 'release'}

@@ -63,7 +63,7 @@ fi
 if [[ $menu == "rofi" || $menu == $(command -v rofi) ]]; then
     menu="$menu -dmenu -lines 3"
 elif [[ $menu == "dmenu" || $menu == $(command -v dmenu) ]]; then
-    menu="$menu ""$DMENU_OPTIONS -g 1"
+    menu="$menu ""$DMENU_OPTIONS"
 fi
 
 # Determine args to pass to dmenu/rofi

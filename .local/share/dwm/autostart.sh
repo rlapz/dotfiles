@@ -1,7 +1,8 @@
 dwmblocks &
 pipewire &
 pipewire-pulse &
-pipewire-media-session &
+sleep 1 & pipewire-media-session &
+#stalonetray --dockapp-mode simple --icon-size=18 &
 #randomfeh 30 ~/Pictures/Wallpapers &
 #feh --bg-scale ~/Pictures/Wallpapers/1085235.png
 #feh --bg-fill ~/Pictures/wallpaper.jpg
@@ -21,4 +22,4 @@ redshift &
 #sleep 5 &&
 #librespot -n "rLapz-dev" -b 320 -c ~/.cache --enable-volume-normalisatio &
 #sleep 2 && volumeicon &
-sleep 2 && telegram-desktop -autostart &
+#sleep 2 && telegram-desktop -autostart &

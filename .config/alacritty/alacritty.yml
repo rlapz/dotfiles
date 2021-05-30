@@ -20,13 +20,13 @@ font:
     family: Dina
   size: 9
 
-scrolling:
-  history: 5000
+    #scrolling:
+    #  history: 5000
 
 window:
   padding:
     x: 2
     y: 2
   dimensions:
-    columns : 65 
+    columns : 70 
     lines   : 22 
