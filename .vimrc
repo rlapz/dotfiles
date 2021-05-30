@@ -17,7 +17,7 @@ set mouse=a
 set hidden
 set relativenumber
 set scrolloff=5
-set textwidth=80
+"set textwidth=80
 set tabstop=8
 set wrap
 
