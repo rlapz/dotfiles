@@ -14,7 +14,14 @@ TEXT=$( xsel -p 2>/dev/null )
 
 
 translate(){
-    echo -e $TEXT | trans :$LANG_TARGET
+    if [[ ! -z $TEXT ]]
+    then
+    	#echo -e $TEXT | trans :$LANG_TARGET
+
+    	# test moetranslate
+    	moetranslate auto id "$TEXT"
+    	#moetranslate auto id -b "$TEXT"
+    fi
 }
 
 clipboard(){

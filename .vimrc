@@ -13,9 +13,9 @@ set cursorline
 "set formatoptions=tcqrn1
 set matchpairs+=<:>
 set mouse=a
-"set number
+set number
 set hidden
-set relativenumber
+"set relativenumber
 set scrolloff=5
 "set textwidth=80
 set tabstop=8
@@ -23,8 +23,8 @@ set wrap
 
 
 " Terminal
-set termwinsize=10x0
-cabbrev bt bo term
+"set termwinsize=10x0
+"cabbrev bt bo term
 "bel bo term
 
 " NERDTree

@@ -13,14 +13,13 @@ export XMODIFIERS=@im=$INPUT
 export CM_SELECTIONS=clipboard
 export DESKTOP_SESSION=gnome
 export EDITOR="vim"
-
-export PATH=$HOME/Application:$HOME/.local/bin:/opt/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin:$PATH
-
-export ANDROID_HOME=$HOME/Development/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
-
 export TERMINAL="alacritty"
 export QT_QPA_PLATFORMTHEME=gtk2
+export PATH=$PATH:$HOME/Application:$HOME/.local/bin
+
+#export PATH=$PATH:/opt/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin:$PATH
+#export ANDROID_HOME=$HOME/Development/Android/Sdk
+#export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
 
 
 ### Running necessary Apps ###

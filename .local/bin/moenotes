@@ -42,7 +42,7 @@ case $1 in
 			echo "--------"
 			if [ $( file -b --mime-type $i | sed 's|/.*||') != "text" ];
 			then
-				echo "-- this file is not a text/encrypted --"
+				echo "-- cannot read this file --"
 			else
 				cat $DIR/$i
 			fi

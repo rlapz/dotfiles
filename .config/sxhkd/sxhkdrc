@@ -58,7 +58,13 @@ XF86AudioMute
     amixer -q sset Master toggle
 
 mod4 + shift + {k,j}
-	amixer -q sset Master 1%{+,-}
+	pamixer -{i,d} 5
 
 mod4 + shift + m
-	amixer -q sset Master toggle
+	pamixer -t
+
+#mod4 + shift + {k,j}
+#	amixer -q sset Master 1%{+,-}
+#
+#mod4 + shift + m
+#	amixer -q sset Master toggle
