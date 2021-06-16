@@ -1,3 +1,5 @@
+#!/bin/sh
+
 ### Global Variables ###
 
 INPUT=fcitx
@@ -31,14 +33,14 @@ fcitx-autostart &
 #uim-xim &
 mons -e bottom --primary "VGA1"
 
-if [ $WIN_MGR != "spectrwm" ]
+if [ "$WIN_MGR" != "spectrwm" ]
 then
 	sleep 2 && mons -a &
 	sleep 1; xset dpms 180 190 200; xss-lock slock &
 fi
 
 ### Running window manager  ###
-dbus-launch $WIN_MGR
+dbus-launch "$WIN_MGR"
 
 ### flwm
 #xsetroot -solid \#004040

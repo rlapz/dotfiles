@@ -1,3 +1,5 @@
+#!/bin/sh
+
 dwmblocks &
 pipewire &
 pipewire-pulse &
