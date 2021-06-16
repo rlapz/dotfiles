@@ -2,7 +2,6 @@
 # Spawn programs
 #
 
-
 #mod4 + r
 #    rofi -m -4 -show run
 
@@ -45,7 +44,7 @@ XF86HomePage
 
 
 mod4 + shift + p
-    $TERMINAL -e vifm
+    st -e vifm
 
 #
 # Media keys

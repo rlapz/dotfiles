@@ -19,7 +19,7 @@ translate(){
     	#echo -e $TEXT | trans :$LANG_TARGET
 
     	# test moetranslate
-    	moetranslate auto id "$TEXT"
+    	moetranslate auto id "$TEXT" | less
     	#moetranslate auto id -b "$TEXT"
     fi
 }

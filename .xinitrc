@@ -13,7 +13,7 @@ export XMODIFIERS=@im=$INPUT
 export CM_SELECTIONS=clipboard
 export DESKTOP_SESSION=gnome
 export EDITOR="vim"
-export TERMINAL="alacritty"
+export TERMINAL="st"
 export QT_QPA_PLATFORMTHEME=gtk2
 export PATH=$PATH:$HOME/Application:$HOME/.local/bin
 

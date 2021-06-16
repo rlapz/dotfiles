@@ -110,8 +110,8 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-{autosuggestions/zsh-autosuggestions.zsh,syntax-highlighting/zsh-syntax-highlighting.zsh}
 #source /usr/share/zsh/plugins/zsh-{autosuggestions/zsh-autosuggestions.zsh,syntax-highlighting/zsh-syntax-highlighting.zsh,vim-mode/zsh-vim-mode.plugin.zsh}
 
-bindkey -v
-bindkey "jj" vi-cmd-mode
+#bindkey -v
+#bindkey "jj" vi-cmd-mode
 #bindkey -M vicmd "k" up-line-or-beginning-search
 #bindkey -M vicmd "j" down-line-or-beginning-search
 #zle -N zle-line-init
