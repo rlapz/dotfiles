@@ -16,7 +16,7 @@ translate(){
 }
 
 clipboard(){
-    if [ -n "$TEXT" ]
+    if [ -z "$TEXT" ]
     then
 	echo -e "No text was selected!\n"
         input
