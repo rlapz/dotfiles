@@ -2,13 +2,13 @@
 # dmenu_run improved
 # if a command ends with "!", it is started in term.
 
-termcmd="st -e"
-test -s $HOME/.dmenurc && . $HOME/.dmenurc 
-cmd="$(dmenu_path | dmenu $@ -i -l 20 -fn "xos4 Terminus:size=11" -p "Run:")" 
-case $cmd in 
+TERMCMD="st -e"
+test -s "$HOME/.dmenurc" && ". $HOME/.dmenurc"
+CMD="$(dmenu_path | dmenu "$@" -i -l 20 -fn "xos4 Terminus:size=11" -p "Run:")" 
+case $CMD in 
 	#\>* ) luakit "https://google.com/search?&q=$(echo $cmd | sed "s/>//")";; 
-	\>* ) luakit "$(echo $cmd | sed "s/>//")";; 
-	*\! ) ${termcmd} "$(printf "%s" "${cmd}" | cut -d'!' -f1)";; 
-	* ) ${cmd} ;; 
+	\>* ) luakit "$(echo "$CMD" | sed "s/>//")";; 
+	*\! ) $TERMCMD "$(printf "%s" "$CMD" | cut -d'!' -f1)";; 
+	* ) $CMD ;; 
 esac 
 exit
