@@ -1,29 +1,29 @@
-#!/bin/sh
+#!/bin/bash
 
 DIR=$HOME/Documents/Diary
 EDITOR=vim
 
-[[ ! -d $DIR ]] && mkdir $DIR
+[[ ! -d "$DIR" ]] && mkdir "$DIR"
 
-cd $DIR
+cd "$DIR" || exit
 
-case $1 in
+case "$1" in
 	"t")
 		DATE=$(date +"%d-%m-%Y")
 
 		if [ ! -f "$DIR/${DATE}.txt" ];
 		then
-			echo "--------------" > $DIR/${DATE}.txt
-			echo "$DATE" >> $DIR/${DATE}.txt
-			echo -e "--------------\n\n" >> $DIR/${DATE}.txt
+			echo "--------------" > "$DIR/${DATE}.txt"
+			echo "$DATE" >> "$DIR/${DATE}.txt"
+			echo -e "--------------\n\n" >> "$DIR/${DATE}.txt"
 		fi
 
-		$EDITOR + $DIR/${DATE}.txt
+		$EDITOR + "$DIR/${DATE}.txt"
 		;;
 
 	"y")
 		DATE=$(date --date="yesterday"  +"%d-%m-%Y")
-		$EDITOR $DIR/${DATE}.txt
+		$EDITOR "$DIR/${DATE}.txt"
 		;;
 
 	"h")
@@ -39,14 +39,14 @@ case $1 in
 
 	*)
 		clear
-		for i in $(ls $DIR | sort -r);
+		for i in $(find "$DIR"/* | sort -r);
 		do
 			echo "[${i##*/}]";
-			if [ $( file -b --mime-type $i | sed 's|/.*||') != "text" ];
+			if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ];
 			then
-				echo "-- this file is not a text/encrypted --"
+				echo "-- cannot read this file --"
 			else
-				head $DIR/$i;
+				head "$i";
 			fi
 			echo -e "\n";
 		done | less

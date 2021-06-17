@@ -1,26 +1,27 @@
-#!/bin/sh
+#!/bin/bash
 
-DIR=$HOME/Documents/Notes
+DIR="$HOME/Documents/Notes"
 
-[[ ! -d $DIR ]] && mkdir $DIR
-cd $DIR
+[[ ! -d "$DIR" ]] && mkdir "$DIR"
 
-case $1 in
+cd "$DIR" || exit
+
+case "$1" in
 	"d")
-		[[ -z $2 ]] && exit
+		[[ -z "$2" ]] && exit
 
-		rm -i $2
+		rm -i "$2"
 		;;
 
 	"o")
-		if [ -z $2 ];
+		if [ -z "$2" ];
 		then
-			cd $DIR
+			cd "$DIR" || exit
 			$EDITOR
 			exit
 		fi
 
-		$EDITOR + $DIR/$2
+		$EDITOR + "$DIR/$2"
 		;;
 
 	"h")
@@ -35,16 +36,16 @@ case $1 in
 		;;
 	*)
 		clear
-		for i in $(ls $DIR);
+		for i in $(find "$DIR"/* | sort -r);
 		do
 			echo "--------"
-			echo "[${i}]"
+			echo "[$i]"
 			echo "--------"
-			if [ $( file -b --mime-type $i | sed 's|/.*||') != "text" ];
+			if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ];
 			then
 				echo "-- cannot read this file --"
 			else
-				cat $DIR/$i
+				cat "$i"
 			fi
 			echo ""
 		done | less
