@@ -1,0 +1,43 @@
+# This is an example for icewm 2.5.0 hotkey definition file.
+# It will be installed as /usr/share/icewm/keys.
+# Place your variants in /etc/icewm or in $HOME/.icewm since
+# modifications to this file will be overwritten when you reinstall icewm.
+#
+# A list of all valid keyboard symbols can be found in
+# /usr/include/X11/keysym.h, keysymdefs.h, XF86keysym.h, ...
+# You'll have to omit XK_ prefixs and to replace XF86XK_ prefixes by
+# XF86. Valid modifiers are Alt, Ctrl, Shift, Meta, Super and Hyper.
+#
+key "Super+Enter"            alacritty
+
+key "Super+Shift+j"     pamixer -d 5
+key "Super+Shift+k"     pamixer -i 5
+
+# "Multimedia key" bindings for Xorg. Gather the keycodes of your
+# advanced function keys by watching the output of the xev command whilest
+# pressing those keys and map those symbols by using xmodmap.
+
+# Note: some of them might have unwanted side effects through concurrency with
+# other listeners like systemd for the suspend key events
+#
+# key "XF86Standby"         /bin/sh -c "{ test -e /run/systemd/system && systemctl suspend; } ||:"
+# key "XF86Sleep"           /bin/sh -c "{ test -e /run/systemd/system && systemctl suspend; } ||:"
+key "XF86AudioLowerVolume"  pamixer -d 5
+key "XF86AudioRaiseVolume"  pamixer -i 5
+key "XF86AudioMute"         pamixer -t
+key "XF86HomePage"          xdg-open about:blank
+key "XF86Search"            xdg-open https://www.google.com
+key "XF86Eject"             eject
+#key "XF86Calculator"        /bin/sh -c "gnome-calculator || xcalc || ( type bc >/dev/null 2>&1 && xterm -e bc -l)"
+
+key "Super+e"               st -e trans-cli --clipboard
+key "Super+Shift+e"         st -e trans-cli --play
+key "Super+Shift+i"         st -e trans-cli --input
+key "Super+r"               dmenu_run_i
+key "Super+p"               dmenu_desktop
+key "Super+Shift+p"         alacritty -e vifm .
+key "Ctrl+Alt+l"            locknow
+key "Print"                 screensh --select
+key "Shift+Print"           screensh --selectwin
+
+#switchkey "Super+p"         icewm-menu-xrandr

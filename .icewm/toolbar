@@ -1,0 +1,10 @@
+# This is an example for icewm 2.5.0 toolbar definition file.
+# It will be installed as /usr/share/icewm/toolbar.
+# Place your variants in /etc/icewm or in $HOME/.icewm since
+# modifications to this file will be overwritten when you reinstall icewm.
+#
+prog "Terminal" xterm alacritty
+prog "Firefox" firefox firefox
+prog "File Manager" folder pcmanfm
+prog "Text Editor" leafpad leafpad
+

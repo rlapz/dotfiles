@@ -54,7 +54,7 @@ mod4 + shift + p
 #    amixer -q sset Master 5%{+,-}
 #
 XF86AudioMute
-    amixer -q sset Master toggle
+	pamixer -t
 
 mod4 + shift + {k,j}
 	pamixer -{i,d} 5

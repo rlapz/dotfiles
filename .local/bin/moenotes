@@ -1,6 +1,8 @@
 #!/bin/bash
 
 DIR="$HOME/Documents/Notes"
+# preview lines max
+LINE=5
 
 [[ ! -d "$DIR" ]] && mkdir "$DIR"
 
@@ -45,7 +47,7 @@ case "$1" in
 			then
 				echo "-- cannot read this file --"
 			else
-				cat "$i"
+				head -n "$LINE" "$i"
 			fi
 			echo ""
 		done | less

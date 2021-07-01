@@ -1,0 +1,16 @@
+#!/bin/sh
+
+sleep 1 &&
+
+fcitx-autostart &
+randomfeh 30 ~/Pictures/Wallpapers &
+pipewire &
+pipewire-pulse &
+sleep 1 && pipewire-media-session &
+dunst &
+clipmenud &
+redshift &
+/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
+mmaker -f --no-legacy --no-debian icewm -t alacritty &
+nm-applet &
+

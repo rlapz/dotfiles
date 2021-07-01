@@ -1,10 +1,9 @@
 #!/bin/sh
 
 ### Global Variables ###
-
 INPUT=fcitx
-WIN_MGR=dwm
-
+WIN_MGR=icewm-session
+#WIN_MGR=dwm
 
 ### Export ###
 export WEB_BROWSER=firefox --private
@@ -15,9 +14,10 @@ export XMODIFIERS=@im=$INPUT
 export CM_SELECTIONS=clipboard
 export DESKTOP_SESSION=gnome
 export EDITOR="vim"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export QT_QPA_PLATFORMTHEME=gtk2
 export PATH=$PATH:$HOME/Application:$HOME/.local/bin
+export PATH=$PATH:$HOME/.nimble/bin
 
 #export PATH=$PATH:/opt/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin:$PATH
 #export ANDROID_HOME=$HOME/Development/Android/Sdk
@@ -26,27 +26,29 @@ export PATH=$PATH:$HOME/Application:$HOME/.local/bin
 
 ### Running necessary Apps ###
 
-#ibus-daemon -drx &
-fcitx-autostart &
-# Statusbar loop
-#~/.xsetroot &
-#uim-xim &
-mons -e bottom --primary "VGA1"
+### Startup ###
+~/.startup &
 
-if [ "$WIN_MGR" != "spectrwm" ]
+
+## dwm
+if [ "$WIN_MGR" = "dwm" ]
 then
-	sleep 2 && mons -a &
-	sleep 1; xset dpms 180 190 200; xss-lock slock &
+	dwmblocks &
+	sxhkd &
 fi
 
-### Running window manager  ###
-dbus-launch "$WIN_MGR"
-
 ### flwm
-#xsetroot -solid \#004040
-#xrdb .Xresources
-#dbus-launch flwm -x
+if [ "$WIN_MGR" = "flwm -x" ]
+then
+	xsetroot -solid \#004040
+	xrdb .Xresources
+fi
 
+# Monitor
+mons -e bottom --primary "VGA1"
+
+### Launch window manager  ###
+dbus-launch "$WIN_MGR"
 
 ### Cleanup ###
 killall /usr/lib/at-spi-bus-launcher

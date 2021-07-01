@@ -21,9 +21,11 @@ RSYNC_C="rsync -auvzP"
 $RSYNC_C "$0" "$DOTFILES"
 
 # home dir
-$RSYNC_C "$HOME"/{.profile,.vimrc,.xinitrc,.zlogin,.zshrc} "$DOTFILES"
+$RSYNC_C "$HOME"/{.profile,.startup,.vimrc,.xinitrc,.zlogin,.zshrc} "$DOTFILES"
 # vim
 $RSYNC_C "$HOME"/.vim/after "$DOTFILES"/.vim
+# icewm
+$RSYNC_C "$HOME"/.icewm "$DOTFILES"
 
 # home/.config dir
 # whole file in dir
@@ -35,11 +37,6 @@ $RSYNC_C "$H_CONFIG"/cmus/rc "$D_CONFIG"/cmus/
 
 # home/.local/bin dir
 $RSYNC_C "$H_BIN"/{'=',clock,dmenu_{desktop,run_i},moe{diary,notes},netspeed,randomfeh,sp,'trans-cli'} "$D_BIN"
-
-# home/.local/share dir
-# dwm autostart
-$RSYNC_C "$H_SHARE"/dwm "$D_SHARE"
-
 
 #-----#
 
