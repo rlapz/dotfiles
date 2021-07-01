@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# https://github.com/bbidulock/icewm/issues/335#issuecomment-467678455
+# recover max native resolution
+CURRES=$(xrandr | sed -n 3p  | awk  '{print $1}')
+FULLW="$(cut -d'x' -f1 <<< "$CURRES")"
+FULLH="$(cut -d'x' -f2 <<< "$CURRES")"
+
+# taskbar pixel height
+TASKH=50 # hardcoded
+
+case "$1" in
+    l)
+        # tile left
+	W=$(((FULLW / 2) -4))
+        H=$((FULLH - TASKH))
+        X=0
+        Y=$TASKH
+        ;;
+    r)
+        # tile right
+	W=$(((FULLW / 2) -4))
+        H=$((FULLH - TASKH))
+	X=$((W +4))
+	Y=$TASKH
+        ;;
+    t)
+        # tile top
+        W=$FULLW
+	H=$(((FULLH - (TASKH / 2)) / 2))
+        X=0
+	Y=$((TASKH / 2))
+        ;;
+    b)
+        # tile bottom
+        W=$FULLW
+	H=$(((FULLH - (TASKH/2)) / 2))
+        X=0
+        Y=$H
+        ;;
+    *)
+	echo -e "$0 [l/r/t/b]"
+	echo -e "l\t: Left"
+	echo -e "r\t: Right"
+	echo -e "t\t: Top"
+	echo -e "b\t: Bottom"
+	exit
+	;;
+esac
+
+# active window id
+# ID="-r :ACTIVE:" # does not work as consistently as the call to xdotool
+ID="-i -r $(xdotool getwindowfocus)"
+
+# disable maximized attribute
+wmctrl $ID -b remove,maximized_vert
+wmctrl $ID -b remove,maximized_horz
+
+
+# resize
+wmctrl $ID -e 0,$X,$Y,$W,$H
