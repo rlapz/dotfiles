@@ -107,7 +107,7 @@
 # ClockClassHint="icewm.XClock"
 
 #  Command to run on clock.
-# ClockCommand="xclock -name icewm -title Clock"
+ClockCommand="xclock -name icewm -title Clock"
 
 #  Confirm logout.
 # ConfirmLogout=1 # 0/1
@@ -170,7 +170,7 @@
 # FocusCurrentWorkspace=0 # 0/1
 
 #  Focus windows when application requests to raise.
-# FocusOnAppRaise=0 # 0/1
+FocusOnAppRaise=1 # 0/1
 
 #  Focus window when client area clicked.
 # FocusOnClickClient=1 # 0/1
@@ -554,7 +554,7 @@ KeyWinMenu="Super+Space"
 # NetStatusCommand="xterm -name 'ss' -title 'Socket Statistics' -hold -e sh -c 'which ss > /dev/null && watch -t ss -putswl || netstat -c'"
 
 #  Show network status only for connected devices.
-# NetStatusShowOnlyRunning=0 # 0/1
+NetStatusShowOnlyRunning=1 # 0/1
 
 #  NET_WORKAREA behaviour: 0 (single/multimonitor with STRUT information, like metacity), 1 (always full desktop), 2 (singlemonitor with STRUT, multimonitor without STRUT)
 # NetWorkAreaBehaviour=0 # [0-2]
@@ -614,16 +614,16 @@ KeyWinMenu="Super+Space"
 # QuickSwitchAllIcons=1 # 0/1
 
 #  Fill the rectangle highlighting the current icon.
-# QuickSwitchFillSelection=0 # 0/1
+QuickSwitchFillSelection=1 # 0/1
 
 #  Group windows by workspace together in Alt+Tab.
 # QuickSwitchGroupWorkspaces=1 # 0/1
 
 #  Show the huge (48x48) of the window icon for the active window.
-# QuickSwitchHugeIcon=0 # 0/1
+QuickSwitchHugeIcon=1 # 0/1
 
 #  Go trough all window titles and choose width of the longest one.
-# QuickSwitchMaxWidth=0 # 0/1
+QuickSwitchMaxWidth=1 # 0/1
 
 #  Raise a selected window while Alt+Tabbing in the QuickSwitch.
 # QuickSwitchRaiseCandidate=0 # 0/1
@@ -815,16 +815,16 @@ TaskBarAtTop=1 # 0/1
 # TaskBarNetSamples=20 # [2-1000]
 
 #  Enable TaskBarShowAPMStatus if a battery is present.
-# TaskBarShowAPMAuto=1 # 0/1
+TaskBarShowAPMAuto=0 # 0/1
 
 #  Show battery status in graph mode.
-# TaskBarShowAPMGraph=1 # 0/1
+TaskBarShowAPMGraph=0 # 0/1
 
 #  Show battery status monitor on task bar.
-# TaskBarShowAPMStatus=0 # 0/1
+TaskBarShowAPMStatus=1 # 0/1
 
 #  Show battery status on task bar in time-format.
-# TaskBarShowAPMTime=1 # 0/1
+TaskBarShowAPMTime=0 # 0/1
 
 #  Show windows from all workspaces on task bar.
 # TaskBarShowAllWindows=0 # 0/1

@@ -6,6 +6,7 @@ menu "Development" folder {
     prog "FLUID" - fluid
     prog "GHex" - ghex
     prog "Glade" - glade
+    prog "Icon Browser" - yad-icon-browser
     prog "ipython" - alacritty -e ipython
     prog "Meld" - meld
 }
@@ -119,6 +120,7 @@ menu "System" folder {
         prog "Fcitx Configuration" - fcitx-configtool
         prog "Monitor Settings" - lxrandr
         prog "Preferred Applications" - libfm-pref-apps
+        prog "YAD settings" - yad-settings
     }
     prog "Avahi Zeroconf Browser" - avahi-discover
     prog "Fcitx" - fcitx

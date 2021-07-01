@@ -115,3 +115,19 @@ source /usr/share/zsh/plugins/zsh-{autosuggestions/zsh-autosuggestions.zsh,synta
 #bindkey -M vicmd "k" up-line-or-beginning-search
 #bindkey -M vicmd "j" down-line-or-beginning-search
 #zle -N zle-line-init
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/lapz/Application/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/lapz/Application/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/lapz/Application/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/lapz/Application/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
