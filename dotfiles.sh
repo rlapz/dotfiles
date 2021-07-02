@@ -25,7 +25,7 @@ $RSYNC_C "$HOME"/{.profile,.startup,.vimrc,.xinitrc,.zlogin,.zshrc} "$DOTFILES"
 # vim
 $RSYNC_C "$HOME"/.vim/after "$DOTFILES"/.vim
 # icewm
-$RSYNC_C "$HOME"/.icewm/{keys,preferences,theme,toolbar,winoptions} "$DOTFILES"/.icewm/
+$RSYNC_C "$HOME"/.icewm/{keys,preferences,theme,toolbar,winoptions,themes} "$DOTFILES"/.icewm/
 
 # home/.config dir
 # whole file in dir

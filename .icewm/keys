@@ -1,4 +1,4 @@
-key "Super+Enter"            alacritty
+key "Super+Shift+Enter"            alacritty
 
 key "Super+Shift+j"     pamixer -d 5
 key "Super+Shift+k"     pamixer -i 5

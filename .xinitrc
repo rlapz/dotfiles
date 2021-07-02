@@ -27,8 +27,7 @@ export PATH=$PATH:$HOME/.nimble/bin
 ### Running necessary Apps ###
 
 ### Startup ###
-~/.startup &
-
+~/.startup
 
 ## dwm
 if [ "$WIN_MGR" = "dwm" ]

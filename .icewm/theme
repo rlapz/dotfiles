@@ -1,3 +1,4 @@
+Theme="win95m/default.theme"
 #Theme="Helix/default.theme"
 #Theme="win95/default.theme"
 #Theme="default/default.theme"
@@ -5,7 +6,6 @@
 #Theme="NanoBlue/default.theme"
 #Theme="motif/default.theme"
 #Theme="metal2/default.theme"
-Theme="Helix/default.theme"
+#Theme="Helix/default.theme"
 #Theme="icedesert/default.theme"
 #Theme="default/default.theme"
-#Theme="win95/default.theme"
