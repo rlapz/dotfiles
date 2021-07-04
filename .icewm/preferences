@@ -206,7 +206,7 @@ FocusOnAppRaise=1 # 0/1
 # HorizontalEdgeSwitch=0 # 0/1
 
 #  Icon search path (colon separated)
-# IconPath="/usr/local/share/icons:/usr/local/share/pixmaps:/usr/share/icons:/usr/share/pixmaps:"
+# IconPath="/usr/local/share/icons:/usr/local/share/pixmaps:/usr/share/icons:/usr/share/pixmaps:$HOME/.local/share/icons:"
 
 #  Colon separated icon theme list with wildcard support. Minus prefix - can be used to exclude themes.
 # IconThemes="*:-HighContrast"

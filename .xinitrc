@@ -44,8 +44,8 @@ case $WIN_MGR in
 		;;
 	"icewm-session")
 		# generate menu
-		#mmaker -f --no-legacy --no-debian icewm -t alacritty
-		icewm-menu-fdo --seps --no-sub-cats --no-sep-others --sep-after > "$HOME/.icewm/menu"
+		mmaker -f --no-legacy --no-debian icewm -t alacritty
+		#icewm-menu-fdo --seps --no-sub-cats --no-sep-others --sep-after > "$HOME/.icewm/menu"
 		nm-applet &
 		randomfeh.sh &
 		;;
