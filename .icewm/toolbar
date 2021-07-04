@@ -5,6 +5,7 @@
 #
 prog "Terminal" xterm alacritty
 prog "Firefox" firefox firefox
-prog "File Manager" folder pcmanfm
-prog "Text Editor" leafpad leafpad
+prog "File Manager" user-home pcmanfm
+prog "Text Editor" file leafpad
+prog "Tor Browser" tor-browser.png tor-browser
 

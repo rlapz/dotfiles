@@ -7,36 +7,36 @@ FULLW="$(cut -d'x' -f1 <<< "$CURRES")"
 FULLH="$(cut -d'x' -f2 <<< "$CURRES")"
 
 # taskbar pixel height
-TASKH=50 # hardcoded
+TASKH=30 # hardcoded
 
 case "$1" in
     l)
         # tile left
 	W=$(((FULLW / 2) -4))
-        H=$((FULLH - TASKH))
+        H=$((FULLH - TASKH - 20))
         X=0
         Y=$TASKH
         ;;
     r)
         # tile right
 	W=$(((FULLW / 2) -4))
-        H=$((FULLH - TASKH))
+        H=$((FULLH - TASKH - 20))
 	X=$((W +4))
 	Y=$TASKH
         ;;
     t)
         # tile top
         W=$FULLW
-	H=$(((FULLH - (TASKH / 2)) / 2))
+	H=$(((FULLH / 2) - TASKH - 10))
         X=0
-	Y=$((TASKH / 2))
+	Y=0
         ;;
     b)
         # tile bottom
         W=$FULLW
-	H=$(((FULLH - (TASKH/2)) / 2))
+	H=$(((FULLH / 2) - TASKH - 10))
         X=0
-        Y=$H
+	Y=$((H + 30))
         ;;
     *)
 	echo -e "$0 [l/r/t/b]"

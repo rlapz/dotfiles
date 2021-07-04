@@ -6,18 +6,28 @@ WIN_MGR=icewm-session
 #WIN_MGR=dwm
 
 ### Export ###
-export WEB_BROWSER=firefox --private
-export GTK_IM_MODULE=$INPUT
-export QT4_IM_MODULE=$INPUT
-export QT_IM_MODULE=$INPUT
-export XMODIFIERS=@im=$INPUT
+# Ascending sort
+# XDG Base Directory
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+
+# config
 export CM_SELECTIONS=clipboard
 export DESKTOP_SESSION=gnome
 export EDITOR="vim"
-export TERMINAL="alacritty"
+export GTK_IM_MODULE=$INPUT
+export QT_IM_MODULE=$INPUT
 export QT_QPA_PLATFORMTHEME=gtk2
-export PATH=$PATH:$HOME/Application:$HOME/.local/bin
+export QT4_IM_MODULE=$INPUT
+export TERMINAL="alacritty"
+export XMODIFIERS=@im=$INPUT
+export WEB_BROWSER=firefox --private
+
+# PATH
 export PATH=$PATH:$HOME/.nimble/bin
+export PATH=$PATH:$HOME/Application:$HOME/.local/bin
 
 #export PATH=$PATH:/opt/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin:$PATH
 #export ANDROID_HOME=$HOME/Development/Android/Sdk
@@ -25,26 +35,24 @@ export PATH=$PATH:$HOME/.nimble/bin
 
 
 ### Running necessary Apps ###
-
-### Startup ###
 ~/.startup
 
-## dwm
-if [ "$WIN_MGR" = "dwm" ]
-then
-	dwmblocks &
-	sxhkd &
-fi
-
-### flwm
-if [ "$WIN_MGR" = "flwm -x" ]
-then
-	xsetroot -solid \#004040
-	xrdb .Xresources
-fi
+case $WIN_MGR in
+	"dwm")
+		dwmblocks &
+		sxhkd &
+		;;
+	"icewm-session")
+		# generate menu
+		#mmaker -f --no-legacy --no-debian icewm -t alacritty
+		icewm-menu-fdo --seps --no-sub-cats --no-sep-others --sep-after > "$HOME/.icewm/menu"
+		nm-applet &
+		randomfeh.sh &
+		;;
+esac
 
 # Monitor
-mons -e bottom --primary "VGA1"
+#mons -e bottom --primary "VGA1"
 
 ### Launch window manager  ###
 dbus-launch "$WIN_MGR"

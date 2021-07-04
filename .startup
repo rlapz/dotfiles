@@ -10,6 +10,4 @@ dunst &
 clipmenud &
 redshift &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
-mmaker -f --no-legacy --no-debian icewm -t alacritty &
-nm-applet &
 sleep 1; xset dpms 180 190 200; xss-lock slock &

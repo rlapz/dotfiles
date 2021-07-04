@@ -65,7 +65,7 @@
 # CPUStatusCombine=1 # 0/1
 
 #  Command to run on CPU status.
-# CPUStatusCommand="xterm -name top -title Process\ Status -e top"
+CPUStatusCommand="alacritty -t 'Process Status' -e top"
 
 #  Show ACPI temperature in CPU status tool tip.
 # CPUStatusShowAcpiTemp=1 # 0/1
@@ -276,6 +276,7 @@ FocusOnAppRaise=1 # 0/1
 
 #  Goes to workspace 1.
 # KeySysWorkspace1="Alt+Ctrl+1"
+KeySysWorkspace1="Super+1"
 
 #  Goes to workspace 10.
 # KeySysWorkspace10="Alt+Ctrl+0"
@@ -300,18 +301,21 @@ FocusOnAppRaise=1 # 0/1
 
 #  Goes to workspace 2.
 # KeySysWorkspace2="Alt+Ctrl+2"
+KeySysWorkspace2="Super+2"
 
 #  Takes the active window to workspace 2.
 # KeySysWorkspace2TakeWin="Alt+Ctrl+Shift+2"
 
 #  Goes to workspace 3.
 # KeySysWorkspace3="Alt+Ctrl+3"
+KeySysWorkspace3="Super+3"
 
 #  Takes the active window to workspace 3.
 # KeySysWorkspace3TakeWin="Alt+Ctrl+Shift+3"
 
 #  Goes to workspace 4.
 # KeySysWorkspace4="Alt+Ctrl+4"
+KeySysWorkspace4="Super+4"
 
 #  Takes the active window to workspace 4.
 # KeySysWorkspace4TakeWin="Alt+Ctrl+Shift+4"
@@ -551,7 +555,7 @@ KeyWinMenu="Super+Space"
 # NetStatusClassHint="ss.XTerm"
 
 #  Command to run on Net status.
-# NetStatusCommand="xterm -name 'ss' -title 'Socket Statistics' -hold -e sh -c 'which ss > /dev/null && watch -t ss -putswl || netstat -c'"
+NetStatusCommand="alacritty -t 'Socket Statistics' -e sh -c 'which ss > /dev/null && watch -t ss -putswl || netstat -c'"
 
 #  Show network status only for connected devices.
 NetStatusShowOnlyRunning=1 # 0/1
@@ -614,7 +618,7 @@ NetStatusShowOnlyRunning=1 # 0/1
 # QuickSwitchAllIcons=1 # 0/1
 
 #  Fill the rectangle highlighting the current icon.
-QuickSwitchFillSelection=1 # 0/1
+# QuickSwitchFillSelection=1 # 0/1
 
 #  Group windows by workspace together in Alt+Tab.
 # QuickSwitchGroupWorkspaces=1 # 0/1
@@ -623,7 +627,7 @@ QuickSwitchFillSelection=1 # 0/1
 QuickSwitchHugeIcon=1 # 0/1
 
 #  Go trough all window titles and choose width of the longest one.
-QuickSwitchMaxWidth=1 # 0/1
+# QuickSwitchMaxWidth=1 # 0/1
 
 #  Raise a selected window while Alt+Tabbing in the QuickSwitch.
 # QuickSwitchRaiseCandidate=0 # 0/1
@@ -764,7 +768,7 @@ SuspendCommand="loginctl suspend"
 # TaskBarApmGraphWidth=10 # [1-1000]
 
 #  Task bar at top of the screen.
-TaskBarAtTop=1 # 0/1
+# TaskBarAtTop=0 # 0/1
 
 #  Auto hide task bar after delay.
 # TaskBarAutoHide=0 # 0/1
@@ -872,10 +876,10 @@ TaskBarShowMailboxStatus=0 # 0/1
 # TaskBarShowWorkspaces=1 # 0/1
 
 #  Group applications with the same class name under a single task button: 0=off, 1=digits, 2=dots, 3=both.
-# TaskBarTaskGrouping=0 # [0-3]
+TaskBarTaskGrouping=0 # [0-3]
 
 #  Enable mouse wheel cycling over workspaces and task buttons in taskbar.
-# TaskBarUseMouseWheel=1 # 0/1
+TaskBarUseMouseWheel=0 # 0/1
 
 #  Task bar width as percentage of the screen width.
 # TaskBarWidthPercentage=100 # [0-100]
@@ -932,7 +936,7 @@ TaskBarShowMailboxStatus=0 # 0/1
 # WinMenuItems="rmsnxfhualyticw"
 
 #  Add a workspace.
-WorkspaceNames=" 1 ", " 2 ", " 3 ", " 4 "
+# WorkspaceNames=" 1 ", " 2 ", " 3 ", " 4 "
 
 #  Time before workspace status window is hidden in ms.
 # WorkspaceStatusTime=700 # [0-2500]
@@ -1300,7 +1304,7 @@ WorkspaceNames=" 1 ", " 2 ", " 3 ", " 4 "
 # MenuFontNameXft="sans-serif:size=10:bold"
 
 #  Menu icon size.
-# MenuIconSize=16 # [8-128]
+MenuIconSize=24 # [8-128]
 
 #  Name of the mini-window font.
 # MinimizedWindowFontName="-*-sans-medium-r-*-*-*-120-*-*-*-*-*-*"

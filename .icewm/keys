@@ -25,5 +25,6 @@ key "Super+l"               icetile r
 key "Super+h"               icetile l
 key "XF86MonBrightnessUp"   brightness up
 key "XF86MonBrightnessDown" brightness down 
+key "Super+semicolon"               clipmenu -m -4 -z 700 -fn "xos4 Terminus:size=11" -p "Clipboard:"
 
 #switchkey "Super+p"         icewm-menu-xrandr
