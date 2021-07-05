@@ -700,10 +700,10 @@ RebootCommand="loginctl reboot"
 # ShowEllipsis=1 # 0/1
 
 #  Show focus mode submenu in the program menu.
-# ShowFocusModeMenu=1 # 0/1
+ShowFocusModeMenu=0 # 0/1
 
 #  Show the help menu item in the program menu.
-# ShowHelp=1 # 0/1
+ShowHelp=0 # 0/1
 
 #  Show logout menu in the program menu.
 # ShowLogoutMenu=1 # 0/1
@@ -724,16 +724,16 @@ RebootCommand="loginctl reboot"
 # ShowRun=1 # 0/1
 
 #  Show settings submenu in the program menu.
-# ShowSettingsMenu=1 # 0/1
+ShowSettingsMenu=0 # 0/1
 
 #  Show task bar.
 # ShowTaskBar=1 # 0/1
 
 #  Show themes submenu in the program menu.
-# ShowThemesMenu=1 # 0/1
+ShowThemesMenu=0 # 0/1
 
 #  Show the window menu item in the program menu.
-# ShowWindowList=1 # 0/1
+ShowWindowList=0 # 0/1
 
 #  Show name of current workspace while switching.
 # ShowWorkspaceStatus=1 # 0/1

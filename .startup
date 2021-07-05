@@ -8,6 +8,5 @@ pipewire-pulse &
 sleep 1 && pipewire-media-session &
 dunst &
 clipmenud &
-redshift &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 sleep 1; xset dpms 180 190 200; xss-lock slock &
