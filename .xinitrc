@@ -44,10 +44,10 @@ case $WIN_MGR in
 		;;
 	"icewm-session")
 		# generate menu
-		mmaker -f --no-legacy --no-debian icewm -t alacritty
+		mmaker -f --no-legacy icewm -t alacritty -s GNOME,Console
 		#icewm-menu-fdo --seps --no-sub-cats --no-sep-others --sep-after > "$HOME/.icewm/menu"
 		nm-applet &
-		randomfeh.sh &
+		osmo & # calendar
 		;;
 esac
 
@@ -55,7 +55,7 @@ esac
 #mons -e bottom --primary "VGA1"
 
 ### Launch window manager  ###
-dbus-launch "$WIN_MGR"
+dbus-launch "$WIN_MGR" >~/.xinitrc.log 2>&1
 
 ### Cleanup ###
 killall /usr/lib/at-spi-bus-launcher

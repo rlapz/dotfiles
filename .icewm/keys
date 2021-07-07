@@ -19,8 +19,8 @@ key "Super+Shift+p"         alacritty -e vifm .
 key "Ctrl+Alt+l"            locknow
 key "Print"                 screensh --select
 key "Shift+Print"           screensh --selectwin
-key "Super+k"               icetile t
-key "Super+j"               icetile b
+#key "Super+k"               icetile t
+#key "Super+j"               icetile b
 key "Super+l"               icetile r
 key "Super+h"               icetile l
 key "XF86MonBrightnessUp"   brightness up
