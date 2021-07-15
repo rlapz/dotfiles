@@ -2,8 +2,8 @@
 
 ### Global Variables ###
 INPUT=fcitx
-WIN_MGR=icewm-session
-#WIN_MGR=dwm
+#WIN_MGR=icewm-session
+WIN_MGR=dwm
 
 ### Export ###
 # Ascending sort
@@ -52,7 +52,7 @@ case $WIN_MGR in
 esac
 
 # Monitor
-#mons -e bottom --primary "VGA1"
+mons -e bottom --primary "VGA1"
 
 ### Launch window manager  ###
 dbus-launch "$WIN_MGR" >~/.xinitrc.log 2>&1

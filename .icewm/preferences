@@ -26,9 +26,6 @@ FocusOnAppRaise=1 # 0/1
 #  Icon search path (colon separated)
 IconPath="/usr/local/share/icons:/usr/local/share/pixmaps:/usr/share/icons:/usr/share/pixmaps:$HOME/.local/share/icons:"
 
-# Icon Themes
-IconThemes="*"
- 
 #  Tiles all windows from left to right maximized vertically.
 KeySysTileVertical="Super+t"
 
@@ -39,10 +36,10 @@ KeySysTileHorizontal="Super+Shift+t"
 KeySysCascade="Super+d"
 
 # Switch window next
-KeySysSwitchNext="Super+k"
+KeySysSwitchNext="Super+j"
 
 # Switch window prev
-KeySysSwitchLast="Super+j"
+KeySysSwitchLast="Super+k"
 
 #  Goes to workspace 1.
 # KeySysWorkspace1="Alt+Ctrl+1"
