@@ -36,7 +36,7 @@ $RSYNC_C "$H_CONFIG"/vifm/{colors,vifm-media,vifmrc} "$D_CONFIG"/vifm
 $RSYNC_C "$H_CONFIG"/cmus/rc "$D_CONFIG"/cmus/
 
 # home/.local/bin dir
-$RSYNC_C "$H_BIN"/{'=',clock,dmenu_{desktop,run_i},moe{diary,notes},netspeed,moewallpaper,moewallpaper.c,sp,'trans-cli',icetile} "$D_BIN"
+$RSYNC_C "$H_BIN"/{'=',clock,dmenu_{desktop,run_i},moe{diary,notes},scrensh,netspeed,moewallpaper,moewallpaper.c,sp,'trans-cli',icetile} "$D_BIN"
 
 #-----#
 

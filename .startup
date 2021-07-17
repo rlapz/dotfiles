@@ -3,7 +3,7 @@
 sleep 1 &&
 
 moewallpaper -d 30 ~/Pictures/Wallpapers &
-fcitx-autostart &
+fcitx5 -d &
 pipewire &
 pipewire-pulse &
 sleep 1 && pipewire-media-session &
@@ -12,5 +12,5 @@ clipmenud &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 sleep 1; xset dpms 180 190 200; xss-lock slock &
 
-calcurse --daemon &
-appimagelaucherd &
+#calcurse --daemon &
+#appimagelaucherd &

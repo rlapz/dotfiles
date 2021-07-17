@@ -17,13 +17,16 @@ export XDG_STATE_HOME=$HOME/.local/state
 export CM_SELECTIONS=clipboard
 export DESKTOP_SESSION=gnome
 export EDITOR="vim"
+export QT_QPA_PLATFORMTHEME=gtk2
+export TERMINAL="alacritty"
+export WEB_BROWSER=firefox --private
+
+#input
 export GTK_IM_MODULE=$INPUT
 export QT_IM_MODULE=$INPUT
-export QT_QPA_PLATFORMTHEME=gtk2
 export QT4_IM_MODULE=$INPUT
-export TERMINAL="alacritty"
+export SDL_IM_MODULE=$INPUT
 export XMODIFIERS=@im=$INPUT
-export WEB_BROWSER=firefox --private
 
 # PATH
 export PATH=$PATH:$HOME/.nimble/bin
@@ -55,10 +58,10 @@ esac
 mons -e bottom --primary "VGA1"
 
 ### Launch window manager  ###
-dbus-launch "$WIN_MGR" >~/.xinitrc.log 2>&1
+exec "$WIN_MGR" >~/.xinitrc.log 2>&1
 
 ### Cleanup ###
-killall /usr/lib/at-spi-bus-launcher
-killall /usr/lib/dconf-service
-killall /usr/bin/dbus-daemon
+#killall /usr/lib/at-spi-bus-launcher
+#killall /usr/lib/dconf-service
+#killall /usr/bin/dbus-daemon
 killall /usr/lib/mozc/mozc_server
