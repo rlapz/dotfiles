@@ -23,13 +23,13 @@ XF86MonBrightness{Up,Down}
 
 # Translator
 mod4 + e
-    alacritty -e trans-cli --clipboard
+    $TERMINAL -t transsh -e transsh --clipboard
 
 mod4 + shift + e
-    alacritty -e trans-cli --play
+    $TERMINAL -t transsh -e transsh --speak
 
 mod4 + shift + i
-    alacritty -e trans-cli --input
+    $TERMINAL -t transsh -e transsh --input
 
 # Screenshot
 Print

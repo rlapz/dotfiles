@@ -1,55 +1,71 @@
-#!/bin/bash
+#!/bin/sh
 
 DIR="$HOME/Documents/Notes"
 # preview lines max
 LINE=5
 
-[[ ! -d "$DIR" ]] && mkdir "$DIR"
-
+[ ! -d "$DIR" ] && mkdir "$DIR"
 cd "$DIR" || exit
 
+help()
+{
+    cat << EOF
+Moe Notes
+
+Usage: moenotes [OPT]
+       -s --show              - show all notes
+       -d --delete [filename] - delete note
+       -o --open [filename]   - open/edit note
+       -h --help              - show help
+
+Example: moenotes --open file1.txt
+EOF
+}
+
 case "$1" in
-	"d")
-		[[ -z "$2" ]] && exit
+"-d" | "--delete")
+    [ -z "$2" ] && exit
+    
+    rm -i "$2"
+    ;;
 
-		rm -i "$2"
-		;;
+"-o" | "--open")
+    if [ -z "$2" ];
+    then
+        cd "$DIR" || exit
+        $EDITOR
+        exit
+    fi
+    
+    $EDITOR + "$DIR/$2"
+    ;;
 
-	"o")
-		if [ -z "$2" ];
-		then
-			cd "$DIR" || exit
-			$EDITOR
-			exit
-		fi
+"-s" | "--show")
+	clear
+	for i in $(find "$DIR"/* | sort -r);
+	do
+	    echo "--------"
+	    echo "[$i]"
+	    echo "--------"
+	    if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ];
+	    then
+	        echo "-- cannot read this file --"
+	    else
+	        head -n "$LINE" "$i"
+	    fi
+	    echo
+	done | less
+	;;
 
-		$EDITOR + "$DIR/$2"
-		;;
+"-h" | "--help")
+    help
+    exit 0
+	;;
 
-	"h")
-		echo -e "Moe Notes\n"
-		echo "Usage:"
-		echo -e "moenotes [Arg 1] [Arg 2]"
-		echo -e " Arg:"
-		echo -e "\td [filename] - delete note"
-		echo -e "\to [filename] - open/edit note"
-		echo -e "\th            - show help"
-
-		;;
-	*)
-		clear
-		for i in $(find "$DIR"/* | sort -r);
-		do
-			echo "--------"
-			echo "[$i]"
-			echo "--------"
-			if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ];
-			then
-				echo "-- cannot read this file --"
-			else
-				head -n "$LINE" "$i"
-			fi
-			echo ""
-		done | less
-		;;
+*)
+    echo "Invalid argument!"
+    echo
+    help
+    exit 1
+	;;
 esac

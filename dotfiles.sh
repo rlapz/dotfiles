@@ -21,7 +21,7 @@ RSYNC_C="rsync -auvzP"
 $RSYNC_C "$0" "$DOTFILES"
 
 # home dir
-$RSYNC_C "$HOME"/{.profile,.startup,.vimrc,.xinitrc,.zlogin,.zshrc} "$DOTFILES"
+$RSYNC_C "$HOME"/{.profile,.startup,.xinitrc,.zlogin,.zshrc,.bashrc} "$DOTFILES"
 # vim
 $RSYNC_C "$HOME"/.vim/after "$DOTFILES"/.vim
 # icewm
@@ -36,7 +36,7 @@ $RSYNC_C "$H_CONFIG"/vifm/{colors,vifm-media,vifmrc} "$D_CONFIG"/vifm
 $RSYNC_C "$H_CONFIG"/cmus/rc "$D_CONFIG"/cmus/
 
 # home/.local/bin dir
-$RSYNC_C "$H_BIN"/{'=',clock,dmenu_{desktop,run_i},moe{diary,notes},scrensh,netspeed,moewallpaper,moewallpaper.c,sp,'trans-cli',icetile} "$D_BIN"
+$RSYNC_C "$H_BIN"/{'=',brightness,clock,locknow,dmenu_{desktop,run_i},moe{diary,notes},screensh,netspeed,moewallpaper,moewallpaper.c,sp,transsh,gtts,icetile} "$D_BIN"
 
 #-----#
 

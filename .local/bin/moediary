@@ -1,56 +1,83 @@
-#!/bin/bash
+#!/bin/sh
 
 DIR=$HOME/Documents/Diary
 EDITOR=vim
 # preview lines max
 LINE=5
+SEP="-----------"
 
-[[ ! -d "$DIR" ]] && mkdir "$DIR"
-
+[ ! -d "$DIR" ] && mkdir "$DIR"
 cd "$DIR" || exit
 
+help()
+{
+    cat << EOF
+Moe Diary
+
+Usage: moediary [OPT]"
+       -s --save            - show all diaries
+       -o --open [filename] - open/edit spesific diary
+       -t --today           - add/edit today's diary
+       -y --yesterday       - add/edit yesterday's diary
+       -h --help            - show help
+
+Example: moediary --show
+EOF
+}
+
 case "$1" in
-	"t")
-		DATE=$(date +"%d-%m-%Y")
+"-t" | "--today")
+    DATE=$(date +"%d-%m-%Y")
+    
+    if [ ! -f "$DIR/${DATE}.txt" ]
+    then
+        printf "%s\n%s\n%s\n\n\n" "$SEP" "$DATE" "$SEP" > "$DIR/${DATE}.txt"
+    fi
+    
+    $EDITOR + "$DIR/${DATE}.txt"
+    ;;
+    
+"-y" | "--yesterday" | "-o" | "--open" )
+    if [ "$1" = "-o" ] || [ "$1" = "--open" ]
+    then
+        [ -z "$2" ] && echo "Filename empty!" && exit 1
+        DATE="$2"
+    else
+        DATE="$(date --date="yesterday"  +"%d-%m-%Y").txt"
+    fi
+    
+    if [ -f "$DIR/${DATE}" ]
+    then
+        $EDITOR + "$DIR/${DATE}"
+    fi
+    
+    echo "Diary \"$DATE\" not found"
+    ;;
 
-		if [ ! -f "$DIR/${DATE}.txt" ];
-		then
-			echo "--------------" > "$DIR/${DATE}.txt"
-			echo "$DATE" >> "$DIR/${DATE}.txt"
-			echo -e "--------------\n\n" >> "$DIR/${DATE}.txt"
-		fi
+"-s" | "--show")
+    clear
+    for i in $(find "$DIR"/* | sort -r)
+    do
+        echo "[${i##*/}]"
+        if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ]
+        then
+            echo "-- cannot read this file --"
+        else
+            head -n "$LINE" "$i"
+        fi
+        echo;
+    done | less
+    ;;
 
-		$EDITOR + "$DIR/${DATE}.txt"
-		;;
+"-h" | "--help")
+    help
+    exit 0
+    ;;
 
-	"y")
-		DATE=$(date --date="yesterday"  +"%d-%m-%Y")
-		$EDITOR "$DIR/${DATE}.txt"
-		;;
-
-	"h")
-		echo -e "Moe Diary\n"
-		echo "Usage:"
-		echo -e "moediary [Arg]"
-		echo -e " Arg:"
-		echo -e "\tt - edit/new today's diary"
-		echo -e "\ty - edit/new yesterday's diary"
-		echo -e "\th - show help"
-
-		;;
-
-	*)
-		clear
-		for i in $(find "$DIR"/* | sort -r);
-		do
-			echo "[${i##*/}]";
-			if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ];
-			then
-				echo "-- cannot read this file --"
-			else
-				head -n "$LINE" "$i";
-			fi
-			echo -e "\n";
-		done | less
-		;;
+*)
+    echo "Invalid argumen!"
+    echo
+    help
+    exit 1
+    ;;
 esac

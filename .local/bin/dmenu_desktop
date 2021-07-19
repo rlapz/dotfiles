@@ -1,19 +1,20 @@
-#!/bin/bash
+#!/bin/sh
 
 CACHE_F="$HOME/.cache/dmenu_dektop"
-DESKTOP_DIR=(
-		"/usr/share/applications"
-		"$HOME/.local/share/applications"
-)
+DESKTOP_DIR_1="/usr/share/applications"
+DESKTOP_DIR_2="$HOME/.local/share/applications"
+
+FONT="xos4 Terminus:size=11"
 
 #FILE_NAME=$(sed -n 's/^Name=//p' $DESKTOP_FILE)
 
 if [ ! -f "$CACHE_F" ]; then
-	for i in "${DESKTOP_DIR[@]}"; do
-		cd "$i" || exit
-		ls -- *.desktop >> "$CACHE_F"
-	done
+	cd "$DESKTOP_DIR_1" || exit
+	ls -- *.desktop >> "$CACHE_F"
+
+	cd "$DESKTOP_DIR_2" || exit
+	ls -- *.desktop >> "$CACHE_F"
 fi
 
-sort "$CACHE_F" | dmenu "$@" -i -l 20 -fn "xos4 Terminus:size=11" -p "->" | xargs gtk-launch 2>/dev/null
+sort "$CACHE_F" | dmenu "$@" -i -l 20 -fn "$FONT" -p "->" | xargs gtk-launch 2>/dev/null
 

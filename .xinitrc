@@ -56,12 +56,13 @@ esac
 
 # Monitor
 mons -e bottom --primary "VGA1"
+mons -a &
 
 ### Launch window manager  ###
 exec "$WIN_MGR" >~/.xinitrc.log 2>&1
 
 ### Cleanup ###
-#killall /usr/lib/at-spi-bus-launcher
-#killall /usr/lib/dconf-service
-#killall /usr/bin/dbus-daemon
+killall /usr/lib/at-spi-bus-launcher
+killall /usr/lib/dconf-service
+killall /usr/bin/dbus-daemon
 killall /usr/lib/mozc/mozc_server
