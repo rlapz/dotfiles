@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# Get current date
+DATE=$(date +"%F-%H%M%S")
+
+# Output file
+DIR="$HOME/Pictures/Screenshots"
+
+[ ! -d "$DIR" ] && mkdir -p "$DIR"
+
+OPT="$1"
+
+help()
+{
+    cat << EOF
+Screensh - Imagemagick-screenshot tool
+
+Usage: screensh [OPTIONS]
+       -s --select       - Mouse selection
+       -w --selectwin    - Select windows
+       -f --windowfocus  - Focused window only
+       -h --help         - Display this help and exit
+
+Example: screensh --select 
+EOF
+}
+
+case $OPT in
+"-s" | "--select")
+    import -frame -border "$DIR/$DATE.png"
+    ;;
+
+"-w" | "--selectwin")
+    import -screen -frame -border "$DIR/$DATE.png"
+    ;;
+
+"-f" | "--windowfocus")
+    import -screen -frame -border -window "$WINDOWID" "$DIR/$DATE.png"
+    ;;
+
+"-h" | "--help")
+    help
+    exit 0
+    ;;
+
+*)
+    echo "Invalid argument!"
+    help
+    exit 1
+    ;;
+esac

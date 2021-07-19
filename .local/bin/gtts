@@ -1,0 +1,17 @@
+#!/bin/sh
+
+LANG="$1"
+TEXT="$2"
+URL="http://translate.google.com/translate_tts?ie=UTF-8&tl=$LANG&q=$TEXT&client=tw-ob"
+USERAGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"
+TEMP="/tmp/trans_speak.mp3"
+
+[ -z "$LANG" ] || [ -z "$TEXT" ] && exit 1
+
+wget -q -U "$USERAGENT" "$URL" -O "$TEMP"
+
+mpv "$TEMP"
+rm "$TEMP"
+
+exit 0
+

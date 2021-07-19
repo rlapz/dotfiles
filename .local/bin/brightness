@@ -1,0 +1,18 @@
+#!/bin/sh
+
+[ -z "$2" ] && INCR=5 || INCR="$2"
+
+case "$1" in
+"up")
+    xbacklight -inc "$INCR"
+    exit 0
+    ;;
+
+"down")
+    xbacklight -dec "$INCR"
+    exit 0
+	;;
+*)
+    exit 1
+esac
+

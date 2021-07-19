@@ -1,0 +1,93 @@
+#!/bin/sh
+
+LANG_TARGET="id"
+S_LANG_TARGET="en"
+TEXT_SRC=""
+
+help()
+{
+    cat <<EOF
+transsh - translator tool
+
+Usage: transsh [OPT]
+       -c  --clipboard    - Load text from clipboard
+       -i  --input        - Input text manually
+       -h  --help         - Show help
+       
+Example: transsh --clipboard
+EOF
+}
+
+gettext()
+{
+    TEXT_SRC=$(xsel -p 2>/dev/null)
+
+}
+
+inputtext()
+{
+    printf "%s" "Input text: "
+    read -r TEXT_SRC
+}
+
+translate()
+{
+    while [ -z "$TEXT_SRC" ]
+    do
+        inputtext
+    done
+    
+    # engine
+    moetranslate -f auto "$LANG_TARGET" "$TEXT_SRC" | less -R
+}
+
+speak()
+{
+    while [ -z "$TEXT_SRC" ]
+    do
+        inputtext
+    done
+ 
+    URL="http://translate.google.com/translate_tts?
+        ie=UTF-8&tl=$S_LANG_TARGET&q=$TEXT_SRC&client=tw-ob"
+
+    USERAGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5)\
+        AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"
+
+    TEMP="/tmp/trans_speak"
+    
+    wget -q -U "$USERAGENT" "$URL" -O "$TEMP"
+    
+    mpv "$TEMP" 1>/dev/null
+    rm "$TEMP"
+}
+
+case "$1" in
+"-c" | "--clipboard")
+    gettext
+    translate
+    ;;
+
+"-i" | "--input")
+    unset "$TEXT_SRC"
+    translate
+    ;;
+
+"-s" | "--speak")
+    gettext
+    speak
+    ;;
+
+"-h" | "--help")
+    help
+    exit 0
+    ;;
+
+*)
+    echo "Invalid argument!"
+    echo
+    help
+    exit 1
+    ;;
+esac
+
