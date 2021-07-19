@@ -38,6 +38,7 @@ translate()
     done
     
     # engine
+    # https://github.com/rlapz/moetranslate
     moetranslate -f auto "$LANG_TARGET" "$TEXT_SRC" | less -R
 }
 
