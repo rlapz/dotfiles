@@ -12,6 +12,8 @@ transsh - translator tool
 Usage: transsh [OPT]
        -c  --clipboard    - Load text from clipboard
        -i  --input        - Input text manually
+       -s  --speak        - Play audio
+       -I  --inputspeak   - Input text manually and play audio
        -h  --help         - Show help
        
 Example: transsh --clipboard
@@ -26,7 +28,7 @@ gettext()
 
 inputtext()
 {
-    printf "%s" "Input text: "
+    printf "Input text: "
     read -r TEXT_SRC
 }
 
@@ -38,7 +40,6 @@ translate()
     done
     
     # engine
-    # https://github.com/rlapz/moetranslate
     moetranslate -f auto "$LANG_TARGET" "$TEXT_SRC" | less -R
 }
 
@@ -70,12 +71,14 @@ case "$1" in
     ;;
 
 "-i" | "--input")
-    unset "$TEXT_SRC"
     translate
     ;;
 
 "-s" | "--speak")
     gettext
+    speak
+    ;;
+"-I" | "--inputspeak")
     speak
     ;;
 

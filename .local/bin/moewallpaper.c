@@ -2,6 +2,12 @@
  *
  * MIT License
  * rLapz 2021
+ *
+ * -----------------------------------------------
+ * How to compile:
+ *   cc -Wall -Wextra moewallpaper.c -o moewallpaper -Os
+ *
+ * Don't forget to install Feh
  */
 
 #include <errno.h>

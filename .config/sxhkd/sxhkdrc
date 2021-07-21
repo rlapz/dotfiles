@@ -25,11 +25,14 @@ XF86MonBrightness{Up,Down}
 mod4 + e
     $TERMINAL -t transsh -e transsh --clipboard
 
-mod4 + shift + e
+mod4 + s
     $TERMINAL -t transsh -e transsh --speak
 
-mod4 + shift + i
+mod4 + shift + e
     $TERMINAL -t transsh -e transsh --input
+
+mod4 + shift + s
+    $TERMINAL -t transsh -e transsh --inputspeak
 
 # Screenshot
 Print
@@ -57,7 +60,7 @@ XF86AudioMute
 	pamixer -t
 
 mod4 + shift + {k,j}
-	pamixer -{i,d} 5
+	pamixer -{i,d} 1
 
 mod4 + shift + m
 	pamixer -t

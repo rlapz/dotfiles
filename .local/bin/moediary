@@ -1,10 +1,10 @@
 #!/bin/sh
 
-DIR=$HOME/Documents/Diary
-EDITOR=vim
+readonly DIR=$HOME/Documents/Diary
+readonly EDITOR=vim
 # preview lines max
-LINE=5
-SEP="-----------"
+readonly LINE=5
+readonly SEP="-----------"
 
 [ ! -d "$DIR" ] && mkdir "$DIR"
 cd "$DIR" || exit

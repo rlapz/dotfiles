@@ -1,43 +1,101 @@
-#!/bin/bash
+#!/bin/sh
 
 
-H_BIN=$HOME/.local/bin
-H_SHARE=$HOME/.local/share
-H_CONFIG=$HOME/.config
+# ------------------------------------------------------
+#                       Set Dirs
+# ------------------------------------------------------
+readonly H_BIN=$HOME/.local/bin
+#readonly H_SHARE=$HOME/.local/share
+readonly H_CONFIG=$HOME/.config
 
-DOTFILES=$HOME/Documents/dotfiles
-D_BIN=$DOTFILES/.local/bin
-D_SHARE=$DOTFILES/.local/share
-D_CONFIG=$DOTFILES/.config
+readonly D_DIR=$HOME/Documents/dotfiles
+readonly D_BIN=$D_DIR/.local/bin
+#readonly D_SHARE=$D_DIR/.local/share
+readonly D_CONFIG=$D_DIR/.config
 
-[ ! -d "$DOTFILES" ] && mkdir -p "$DOTFILES"
-[ ! -d "$D_BIN" ] && mkdir -p "$D_BIN"
-[ ! -d "$D_SHARE" ] && mkdir -p "$D_SHARE"
+
+# ------------------------------------------------------
+#                      Check Dirs
+# ------------------------------------------------------
+
+[ ! -d "$D_DIR" ]    && mkdir -p "$D_DIR"
+[ ! -d "$D_BIN" ]    && mkdir -p "$D_BIN"
+#[ ! -d "$D_SHARE" ]  && mkdir -p "$D_SHARE"
 [ ! -d "$D_CONFIG" ] && mkdir -p "$D_CONFIG"
 
-RSYNC_C="rsync -auvzP"
 
-# this file
-$RSYNC_C "$0" "$DOTFILES"
+# ------------------------------------------------------
+#                 function declaration(s)
+# ------------------------------------------------------
+rsync_c()
+{
+    rsync -auvzP "$1" "$2"
+}
 
-# home dir
-$RSYNC_C "$HOME"/{.profile,.startup,.xinitrc,.zlogin,.zshrc,.bashrc} "$DOTFILES"
-# vim
-$RSYNC_C "$HOME"/.vim/after "$DOTFILES"/.vim
+
+# ------------------------------------------------------
+#                   Backup process
+# ------------------------------------------------------
+# $HOME/
+readonly HOME_FILES=".profile .startup .xinitrc \
+                    .zlogin .zshrc .bashrc"
+
+# $HOME/.config
+readonly CONFIG_FILES="alacritty dunst sxhkd"
+
+# $HOME/.local/bin
+readonly BIN_FILES="= brightness clock locknow dmenu_desktop dmenu_run_i \
+                    moediary moenotes screensh netspeed moewallpaper \
+                    moewallpaper.c sp transsh gtts icetile"
+
+# backup this file
+rsync_c "$0" "$D_DIR"
+
+# backup from $HOME dir
+for I in $HOME_FILES
+do
+    rsync_c "$I" "$D_DIR"
+done
+
+
+# backup from $HOME/.config dir
+for I in $CONFIG_FILES
+do
+    rsync_c "$H_CONFIG/$I" "$D_CONFIG"
+done
+
+# backup from .local/bin dir
+for I in $BIN_FILES
+do
+    rsync_c "$H_BIN/$I" "$D_BIN"
+done
+
+
+# ------------------------------------------------------
+#                For specific Files/dirs
+# ------------------------------------------------------
+# Vim
+rsync_c "$HOME/.vim/after" "$D_DIR/.vim/"
+
 # icewm
-$RSYNC_C "$HOME"/.icewm/{keys,preferences,theme,toolbar,icons,winoptions,themes} "$DOTFILES"/.icewm/
+readonly ICEWM_D="keys preferences theme toolbar icons winoptions themes"
 
-# home/.config dir
-# whole file in dir
-$RSYNC_C "$H_CONFIG"/{alacritty,dunst,sxhkd} "$D_CONFIG"
+for I in $ICEWM_D
+do
+    rsync_c "$HOME/.icewm/$I" "$D_DIR/.icewm/"
+done
+
 # vifm
-$RSYNC_C "$H_CONFIG"/vifm/{colors,vifm-media,vifmrc} "$D_CONFIG"/vifm
+readonly VIFM_D="colors vifm-media vifmrc"
+for I in $VIFM_D
+do
+    rsync_c "$H_CONFIG/vifm/$I" "$D_CONFIG/vifm"
+done
+
 # cmus
-$RSYNC_C "$H_CONFIG"/cmus/rc "$D_CONFIG"/cmus/
+rsync_c "$H_CONFIG/cmus/rc" "$D_CONFIG/cmus/"
 
-# home/.local/bin dir
-$RSYNC_C "$H_BIN"/{'=',brightness,clock,locknow,dmenu_{desktop,run_i},moe{diary,notes},screensh,netspeed,moewallpaper,moewallpaper.c,sp,transsh,gtts,icetile} "$D_BIN"
 
-#-----#
-
+# ------------------------------------------------------
 echo "Done!"
+exit 0
