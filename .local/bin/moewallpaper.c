@@ -33,7 +33,7 @@ static const char *arg0;
 void
 help(FILE *f)
 {
-	fprintf(f, "moewallpaper - Feh wallpaper slide show\n\n"
+	fprintf(f, "moewallpaper - Feh wallpaper slideshow\n\n"
 		"Usage: %s [-d/-h] [DELAY] [DIR]\n"
 		"       -d     delay\n"
 		"       -h     Show this help\n\n"

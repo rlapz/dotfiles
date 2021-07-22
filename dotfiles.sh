@@ -46,7 +46,7 @@ readonly CONFIG_FILES="alacritty dunst sxhkd"
 # $HOME/.local/bin
 readonly BIN_FILES="= brightness clock locknow dmenu_desktop dmenu_run_i \
                     moediary moenotes screensh netspeed moewallpaper \
-                    moewallpaper.c sp transsh gtts icetile"
+                    moewallpaper.c moewallpaper.sh sp transsh gtts icetile"
 
 # backup this file
 rsync_c "$0" "$D_DIR"

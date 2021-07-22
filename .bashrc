@@ -41,9 +41,14 @@ alias ll='l -l'
 alias lll='ll -a'
 alias la='l -a'
 
+# openRC
 alias svr='doas rc-service'
 alias svs='rc-status'
 alias svu='doas rc-update'
 
+# golang
+alias gof='go fmt'
+alias gor='go run'
+alias gob='go build'
 
 unset use_color safe_term match_lhs sh

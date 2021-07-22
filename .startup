@@ -2,7 +2,8 @@
 
 sleep 1 &&
 
-moewallpaper -d 30 ~/Pictures/Wallpapers &
+#moewallpaper -d 30 ~/Pictures/Wallpapers &
+moewallpaper.sh &
 fcitx5 -d &
 pipewire &
 pipewire-pulse &

@@ -1,13 +1,18 @@
 #!/bin/sh
+#
+# transsh - POSIX script shell translation helper
+#
+# Required packages:
+#   xsel, mpv, wget, translation engine (like translate-shell)
+
 
 LANG_TARGET="id"
-S_LANG_TARGET="en"
 TEXT_SRC=""
 
 help()
 {
     cat <<EOF
-transsh - translator tool
+transsh - POSIX script shell translation helper
 
 Usage: transsh [OPT]
        -c  --clipboard    - Load text from clipboard
@@ -39,8 +44,9 @@ translate()
         inputtext
     done
     
-    # engine
-    moetranslate -f auto "$LANG_TARGET" "$TEXT_SRC" | less -R
+    # engine = moetranslate
+    # https://github.com/rlapz/moetranslate
+    moetranslate -f "auto:${LANG_TARGET}" "$TEXT_SRC" | less -R
 }
 
 speak()
@@ -49,6 +55,8 @@ speak()
     do
         inputtext
     done
+
+    S_LANG_TARGET=$(moetranslate -d "$TEXT_SRC" | awk '{print $1}')
  
     URL="http://translate.google.com/translate_tts?
         ie=UTF-8&tl=$S_LANG_TARGET&q=$TEXT_SRC&client=tw-ob"

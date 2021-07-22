@@ -8,6 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+# ---------------------------------------------------------- #
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -16,13 +18,47 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+# if running oksh
+if [ -n "$OKSH_VERSION" ] && [ -f "$HOME/.kshrc" ]
+then
+    export ENV="$HOME/.kshrc"
+    . "$HOME/.kshrc"
 fi
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+# ---------------------------------------------------------- #
+
+# GPG
+export GPG_TTY=$(tty)
+
+# PATH
+export PATH=$PATH:$HOME/.nimble/bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/Application
+#export PATH=$PATH:/opt/STMicroelectronics/STM32Cube/STM32CubeProgrammer/bin:$PATH
+#export ANDROID_HOME=$HOME/Development/Android/Sdk
+#export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+
+# XDG Base Directory
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+
+# man
+export MANPAGER=less
+
+# config
+export CM_SELECTIONS=clipboard
+export DESKTOP_SESSION=gnome
+export EDITOR="vim"
+export QT_QPA_PLATFORMTHEME=gtk2
+export TERMINAL="alacritty"
+export WEB_BROWSER=firefox --private
+
+#input
+export GTK_IM_MODULE=$INPUT
+export QT_IM_MODULE=$INPUT
+export QT4_IM_MODULE=$INPUT
+export SDL_IM_MODULE=$INPUT
+export XMODIFIERS=@im=$INPUT
 
