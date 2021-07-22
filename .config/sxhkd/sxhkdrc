@@ -23,16 +23,16 @@ XF86MonBrightness{Up,Down}
 
 # Translator
 mod4 + e
-    $TERMINAL -t transsh -e transsh --clipboard
+    st -t transsh -e transsh --clipboard
 
 mod4 + s
-    $TERMINAL -t transsh -e transsh --speak
+    st -t transsh -e transsh --speak
 
 mod4 + shift + e
-    $TERMINAL -t transsh -e transsh --input
+    st -t transsh -e transsh --input
 
 mod4 + shift + s
-    $TERMINAL -t transsh -e transsh --inputspeak
+    st -t transsh -e transsh --inputspeak
 
 # Screenshot
 Print
