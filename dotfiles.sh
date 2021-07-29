@@ -38,7 +38,7 @@ rsync_c()
 # ------------------------------------------------------
 # $HOME/
 readonly HOME_FILES=".profile .startup .xinitrc \
-                    .zlogin .zshrc .bashrc"
+                    .zlogin .zshrc .bashrc .kshrc"
 
 # $HOME/.config
 readonly CONFIG_FILES="alacritty dunst sxhkd"

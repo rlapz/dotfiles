@@ -27,9 +27,6 @@ fi
 
 # ---------------------------------------------------------- #
 
-# GPG
-export GPG_TTY=$(tty)
-
 # PATH
 export PATH=$PATH:$HOME/.nimble/bin
 export PATH=$PATH:$HOME/.local/bin
