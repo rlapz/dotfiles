@@ -1,5 +1,6 @@
 PS1='\[\033[01;01m\]\h [\w]\n\`-> \[\033[00m'
 
+set -o vi
 
 # GPG
 export GPG_TTY=$(tty)

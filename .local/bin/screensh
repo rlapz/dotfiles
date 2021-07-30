@@ -44,7 +44,7 @@ case $OPT in
     ;;
 
 *)
-    echo "Invalid argument!"
+    printf "%s\n\n" "Invalid argument!"
     help
     exit 1
     ;;

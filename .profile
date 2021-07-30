@@ -44,18 +44,3 @@ export XDG_STATE_HOME=$HOME/.local/state
 # man
 export MANPAGER=less
 
-# config
-export CM_SELECTIONS=clipboard
-export DESKTOP_SESSION=gnome
-export EDITOR="vim"
-export QT_QPA_PLATFORMTHEME=gtk2
-export TERMINAL="alacritty"
-export WEB_BROWSER=firefox --private
-
-#input
-export GTK_IM_MODULE=$INPUT
-export QT_IM_MODULE=$INPUT
-export QT4_IM_MODULE=$INPUT
-export SDL_IM_MODULE=$INPUT
-export XMODIFIERS=@im=$INPUT
-

@@ -25,13 +25,13 @@ Example: transsh --clipboard
 EOF
 }
 
-gettext()
+get_text()
 {
     TEXT_SRC=$(xsel -p 2>/dev/null)
 
 }
 
-inputtext()
+input_text()
 {
     printf "Input text: "
     read -r TEXT_SRC
@@ -41,7 +41,7 @@ translate()
 {
     while [ -z "$TEXT_SRC" ]
     do
-        inputtext
+        input_text
     done
     
     # engine = moetranslate
@@ -53,7 +53,7 @@ speak()
 {
     while [ -z "$TEXT_SRC" ]
     do
-        inputtext
+        input_text
     done
 
     S_LANG_TARGET=$(moetranslate -d "$TEXT_SRC" | awk '{print $1}')
@@ -74,7 +74,7 @@ speak()
 
 case "$1" in
 "-c" | "--clipboard")
-    gettext
+    get_text
     translate
     ;;
 
@@ -83,7 +83,7 @@ case "$1" in
     ;;
 
 "-s" | "--speak")
-    gettext
+    get_text
     speak
     ;;
 "-I" | "--inputspeak")
@@ -96,8 +96,7 @@ case "$1" in
     ;;
 
 *)
-    echo "Invalid argument!"
-    echo
+    printf "%s\n" "Invalid argument!"
     help
     exit 1
     ;;
