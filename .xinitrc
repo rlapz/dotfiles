@@ -19,6 +19,7 @@ export DESKTOP_SESSION=gnome
 export EDITOR="vim"
 export QT_QPA_PLATFORMTHEME=gtk2
 export TERMINAL="alacritty"
+export VISUAL="vim"
 export WEB_BROWSER=firefox --private
 
 ### Running necessary Apps ###

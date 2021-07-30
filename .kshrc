@@ -1,9 +1,17 @@
-PS1='\[\033[01;01m\]\h [\w]\n\`-> \[\033[00m'
+#!/bin/sh
 
+PS1='\[\033[01;01m\]\h [\w]\n\`-> \[\033[00m\]'
+
+# vi mode
 set -o vi
 
+# history
+HISTFILE="$HOME/.ksh_history"
+HISTSIZE=5000
+
 # GPG
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # aliased commands
 alias ls='ls --color=auto -h'
