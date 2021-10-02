@@ -16,20 +16,17 @@ export XMODIFIERS=@im=$INPUT
 # config
 export CM_SELECTIONS=clipboard
 export DESKTOP_SESSION=gnome
-export EDITOR="vim"
 export QT_QPA_PLATFORMTHEME=gtk2
 export TERMINAL="alacritty"
 export VISUAL="vim"
 export WEB_BROWSER=firefox --private
-
-### Running necessary Apps ###
-~/.startup
 
 case $WIN_MGR in
 	"dwm")
 		dwmblocks &
 		sxhkd &
 		;;
+
 	"icewm-session")
 		# generate menu
 		mmaker -f --no-legacy icewm -t alacritty -s GNOME,Console
@@ -37,11 +34,18 @@ case $WIN_MGR in
 		nm-applet &
 		osmo & # calendar
 		;;
+
+    *)
+        exit 1
+        ;;
 esac
 
 # Monitor
 mons -e bottom --primary "VGA1"
 mons -a &
+
+### Running necessary Apps ###
+~/.startup
 
 ### Launch window manager  ###
 dbus-run-session "$WIN_MGR" >~/.xinitrc.log 2>&1

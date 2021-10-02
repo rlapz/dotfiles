@@ -92,16 +92,19 @@ okay:
 
 	int ret	= snprintf(cmd, SIZE_CMD, "%s %s %s", FEH, FEH_ARGS, dir);
 	if (ret < 0)
-		/* UNREACHABLE */
 		return EXIT_FAILURE;
 
-	printf("Wallpaper dir\t: %s\nCMD\t\t: %s\n", dir, cmd);
+	printf("Wallpaper dir\t: %s\n"
+		"CMD\t\t: %s\n"
+		"Delay\t\t: %d seconds\n",
+		dir, cmd, delay);
 
 	/* feh */
 	while (1) {
-		if (system(cmd) != 0)
-			/* UNREACHABLE */
+		if (system(cmd) != 0) {
+			perror(NULL);
 			break;
+		}
 		sleep(delay);
 	}
 

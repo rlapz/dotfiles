@@ -3,15 +3,19 @@
 sleep 1 &&
 
 #moewallpaper -d 30 ~/Pictures/Wallpapers &
-moewallpaper.sh &
-fcitx5 -d &
+#moewallpaper.sh &
 pipewire &
 pipewire-pulse &
 sleep 1 && pipewire-media-session &
+
+#sleep 1 && easyeffects --gapplication-service &
+
 dunst &
 clipmenud &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 sleep 1; xset dpms 180 190 200; xss-lock slock &
+
+sleep 3 && fcitx5 -d &
 
 #calcurse --daemon &
 #appimagelaucherd &

@@ -20,9 +20,9 @@ if ${use_color} ; then
 	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
 	if type -P dircolors >/dev/null ; then
 		if [[ -f ~/.dir_colors ]] ; then
-			eval $(dircolors -b ~/.dir_colors)
+			eval "$(dircolors -b ~/.dir_colors)"
 		elif [[ -f /etc/DIR_COLORS ]] ; then
-			eval $(dircolors -b /etc/DIR_COLORS)
+			eval "$(dircolors -b /etc/DIR_COLORS)"
 		fi
 	fi
 
@@ -31,11 +31,16 @@ if ${use_color} ; then
 	alias egrep='egrep --colour=auto'
 	alias fgrep='fgrep --colour=auto'
 
-    PS1='\[\033[01;01m\]\h [\w]\n\`-> \[\033[00m'
+    PS1='\[\033[01;01m\]\h [\w]\n\`-> \[\033[00m\]'
 else
     PS1='\h [\w]-> '
 fi
 
+# GPG
+GPG_TTY=$(tty)
+export GPG_TTY
+
+alias ls='ls --color=auto -h'
 alias l='ls -CF'
 alias ll='l -l'
 alias lll='ll -a'
@@ -52,3 +57,4 @@ alias gor='go run'
 alias gob='go build'
 
 unset use_color safe_term match_lhs sh
+. "$HOME/.cargo/env"

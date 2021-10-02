@@ -38,7 +38,7 @@ rsync_c()
 # ------------------------------------------------------
 # $HOME/
 readonly HOME_FILES=".profile .startup .xinitrc \
-                    .zlogin .zshrc .bashrc .kshrc"
+                    .zlogin .zshrc .bashrc .okshrc"
 
 # $HOME/.config
 readonly CONFIG_FILES="alacritty dunst sxhkd"
@@ -46,7 +46,9 @@ readonly CONFIG_FILES="alacritty dunst sxhkd"
 # $HOME/.local/bin
 readonly BIN_FILES="= brightness clock locknow dmenu_desktop dmenu_run_i \
                     moediary moenotes screensh netspeed moewallpaper \
-                    moewallpaper.c moewallpaper.sh sp transsh gtts icetile"
+                    moewallpaper.c moewallpaper.sh sp transsh gtts icetile ipinfo \
+                    urlencode.c urlencode
+                    "
 
 # backup this file
 rsync_c "$0" "$D_DIR"

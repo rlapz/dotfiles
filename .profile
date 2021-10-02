@@ -19,10 +19,10 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # if running oksh
-if [ -n "$OKSH_VERSION" ] && [ -f "$HOME/.kshrc" ]
+if [ -n "$OKSH_VERSION" ] && [ -f "$HOME/.okshrc" ]
 then
-    export ENV="$HOME/.kshrc"
-    . "$HOME/.kshrc"
+    export ENV="$HOME/.okshrc"
+    . "$HOME/.okshrc"
 fi
 
 # ---------------------------------------------------------- #
@@ -44,3 +44,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 # man
 export MANPAGER=less
 
+# default text editor
+export EDITOR=vim
+
+. "$HOME/.cargo/env"
