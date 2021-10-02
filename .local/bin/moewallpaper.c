@@ -30,15 +30,24 @@
 static const char *arg0;
 
 
-void
+static void
 help(FILE *f)
 {
 	fprintf(f, "moewallpaper - Feh wallpaper slideshow\n\n"
 		"Usage: %s [-d/-h] [DELAY] [DIR]\n"
-		"       -d     delay\n"
+		"       -d     delay (greater than 4 seconds)\n"
 		"       -h     Show this help\n\n"
 		"Example: %s -d 30 ~/Pictures/Wallpapers/\n",
 		arg0, arg0);
+}
+
+static void
+err_msg(int err_code)
+{
+	errno = err_code;
+	perror(NULL);
+	help(stderr);
+	exit(1);
 }
 
 
@@ -55,24 +64,29 @@ main(int argc, char **argv)
 	if (argc == 2 && (strcmp(argv[1], "-h") == 0)) {
 		help(stdout);
 		return EXIT_SUCCESS;
-	} else if (argc == 4 && (strcmp(argv[1], "-d") == 0) && 
-			((delay = (unsigned int)atoi(argv[2])) > 0)) {
-		/* okay, let's go! */
-		goto okay;
-	} else {
-		errno = EINVAL;
+	}
+
+	if (argc != 4 || (strcmp(argv[1], "-d") != 0))
+		err_msg(EINVAL);
+
+	delay = (unsigned int)strtol(argv[2], NULL, 10);
+	if (errno != 0) {
 		perror(NULL);
-		help(stderr);
 		return EXIT_FAILURE;
 	}
 
-okay:
+	if (delay < 5)
+		err_msg(EINVAL);
+
+
 	dir = argv[3];
 
 	if (strlen(dir) >= MAX_DIR_LEN) {
 		errno = EINVAL; /* I'm not sure if this is right */
-		fprintf(stderr, "%s - Directory/path too long! Max Length: %d\n",
-				strerror(errno), MAX_DIR_LEN);
+		fprintf(stderr,
+			"%s - Directory/path too long! Max Length: %d\n",
+			strerror(errno), MAX_DIR_LEN
+		);
 
 		return EXIT_FAILURE;
 	}
@@ -97,7 +111,8 @@ okay:
 	printf("Wallpaper dir\t: %s\n"
 		"CMD\t\t: %s\n"
 		"Delay\t\t: %d seconds\n",
-		dir, cmd, delay);
+		dir, cmd, delay
+	);
 
 	/* feh */
 	while (1) {

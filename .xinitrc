@@ -1,9 +1,8 @@
 #!/bin/sh
 
 ### Global Variables ###
-INPUT=fcitx
-#WIN_MGR=icewm-session
-WIN_MGR=dwm
+readonly INPUT=fcitx
+readonly WIN_MGR=dwm
 
 
 #input
