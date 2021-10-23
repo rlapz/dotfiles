@@ -15,7 +15,7 @@ clipmenud &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 sleep 1; xset dpms 180 190 200; xss-lock slock &
 
-sleep 3 && fcitx5 -d &
+#sleep 3 && fcitx5 &
 
 #calcurse --daemon &
 #appimagelaucherd &

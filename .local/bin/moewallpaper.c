@@ -25,34 +25,21 @@
 #define MAX_DIR_LEN 255
 #define SIZE_CMD ((sizeof(FEH) + sizeof(FEH_ARGS)) + MAX_DIR_LEN +1)
 
+#define HELP(X)\
+	fprintf(X, "moewallpaper - Feh wallpaper slideshow\n\n"  \
+		"Usage: %s [-d/-h] [DELAY] [DIR]\n"              \
+		"       -d     delay (greater than 4 seconds)\n" \
+		"       -h     Show this help\n\n"               \
+		"Example: %s -d 30 ~/Pictures/Wallpapers/\n",    \
+		arg0, arg0);
+
 
 /* global vars */
 static const char *arg0;
 
 
-static void
-help(FILE *f)
-{
-	fprintf(f, "moewallpaper - Feh wallpaper slideshow\n\n"
-		"Usage: %s [-d/-h] [DELAY] [DIR]\n"
-		"       -d     delay (greater than 4 seconds)\n"
-		"       -h     Show this help\n\n"
-		"Example: %s -d 30 ~/Pictures/Wallpapers/\n",
-		arg0, arg0);
-}
-
-static void
-err_msg(int err_code)
-{
-	errno = err_code;
-	perror(NULL);
-	help(stderr);
-	exit(1);
-}
-
-
 int
-main(int argc, char **argv)
+main(int argc, char *argv[])
 {
 	unsigned int delay = 0;
 	struct stat s_file;
@@ -62,30 +49,32 @@ main(int argc, char **argv)
 
 	/* argument parser */
 	if (argc == 2 && (strcmp(argv[1], "-h") == 0)) {
-		help(stdout);
+		HELP(stdout);
 		return EXIT_SUCCESS;
 	}
 
-	if (argc != 4 || (strcmp(argv[1], "-d") != 0))
-		err_msg(EINVAL);
-
-	delay = (unsigned int)strtol(argv[2], NULL, 10);
-	if (errno != 0) {
-		perror(NULL);
+	if (argc != 4 || (strcmp(argv[1], "-d") != 0)) {
+		HELP(stderr);
 		return EXIT_FAILURE;
 	}
 
-	if (delay < 5)
-		err_msg(EINVAL);
+	delay = (unsigned int)strtol(argv[2], NULL, 10);
+	if (errno != 0)
+		return EXIT_FAILURE;
+
+	if (delay < 5) {
+		HELP(stderr);
+
+		return EXIT_FAILURE;
+	}
 
 
 	dir = argv[3];
 
 	if (strlen(dir) >= MAX_DIR_LEN) {
-		errno = EINVAL; /* I'm not sure if this is right */
 		fprintf(stderr,
-			"%s - Directory/path too long! Max Length: %d\n",
-			strerror(errno), MAX_DIR_LEN
+			"Directory/path too long! Max Length: %d\n",
+			MAX_DIR_LEN
 		);
 
 		return EXIT_FAILURE;
@@ -99,13 +88,11 @@ main(int argc, char **argv)
 
 	/* check if the last argument is directory or not */
 	if (S_ISREG(s_file.st_mode)) {
-		errno = ENOTDIR;
-		perror(dir);
+		fprintf(stderr, "\"%s\" is not a directory\n", dir);
 		return EXIT_FAILURE;
 	}
 
-	int ret	= snprintf(cmd, SIZE_CMD, "%s %s %s", FEH, FEH_ARGS, dir);
-	if (ret < 0)
+	if (snprintf(cmd, SIZE_CMD, "%s %s %s", FEH, FEH_ARGS, dir) < 0)
 		return EXIT_FAILURE;
 
 	printf("Wallpaper dir\t: %s\n"
@@ -118,10 +105,11 @@ main(int argc, char **argv)
 	while (1) {
 		if (system(cmd) != 0) {
 			perror(NULL);
-			break;
+
+			return EXIT_FAILURE;
 		}
 		sleep(delay);
 	}
 
-	return EXIT_FAILURE;
+	return EXIT_SUCCESS;
 }

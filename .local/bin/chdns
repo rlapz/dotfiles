@@ -1,0 +1,8 @@
+#!/bin/sh
+
+
+[ -z "$1" ] && exit
+
+echo "nameserver $1" > /etc/resolv.conf && echo "Done!" && exit
+
+echo "Failed!"

@@ -47,7 +47,7 @@ readonly CONFIG_FILES="alacritty dunst sxhkd"
 readonly BIN_FILES="= brightness clock locknow dmenu_desktop dmenu_run_i \
                     moediary moenotes screensh netspeed moewallpaper \
                     moewallpaper.c moewallpaper.sh sp transsh gtts icetile ipinfo \
-                    urlencode.c urlencode
+                    urlencode.c urlencode srv chdns
                     "
 
 # backup this file

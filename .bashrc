@@ -47,9 +47,9 @@ alias lll='ll -a'
 alias la='l -a'
 
 # openRC
-alias svr='doas rc-service'
-alias svs='rc-status'
-alias svu='doas rc-update'
+#alias svr='doas rc-service'
+#alias svs='rc-status'
+#alias svu='doas rc-update'
 
 # golang
 alias gof='go fmt'

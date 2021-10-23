@@ -1,0 +1,56 @@
+#!/bin/sh
+
+__SU="doas" # or sudo
+
+help()
+{
+    cat << EOF
+srv [OPT] [SERVICE]
+
+Examples:
+     start   SERVICE
+     stop    SERVICE
+     restart SERVICE
+     add     SERVICE
+     delete  SERVICE
+     status  SERVICE
+     show
+     
+EOF
+}
+
+case "$1" in
+"start")
+    $__SU rc-service "$2" start
+    ;;
+
+"stop")
+    $__SU rc-service "$2" stop
+    ;;
+
+"restart")
+    $__SU rc-service "$2" restart
+    ;;
+
+"add")
+    $__SU rc-update add "$2"
+    ;;
+
+"delete")
+    $__SU rc-update delete "$2"
+    ;;
+
+"show")
+    rc-update show
+    ;;
+
+"status")
+    rc-status "$2"
+    ;;
+
+*)
+    help
+
+    exit 1
+    ;;
+esac

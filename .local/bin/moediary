@@ -75,7 +75,7 @@ case "$1" in
     ;;
 
 *)
-    printf "%s\n\n" "Invalid argumen!"
+    printf "%s\n\n" "Invalid argument!"
     help
     exit 1
     ;;
