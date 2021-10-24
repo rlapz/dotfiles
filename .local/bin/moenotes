@@ -7,9 +7,9 @@ readonly LINE=5
 [ ! -d "$DIR" ] && mkdir "$DIR"
 cd "$DIR" || exit
 
-help()
+help_msg()
 {
-    cat << EOF
+	cat << EOF
 Moe Notes
 
 Usage: moenotes [OPT]
@@ -24,47 +24,52 @@ EOF
 
 case "$1" in
 "-d" | "--delete")
-    [ -z "$2" ] && exit
-    
-    rm -i "$2"
-    ;;
+	[ -z "$2" ] && exit
+	
+	rm -i "$2"
+	;;
 
 "-o" | "--open")
-    if [ -z "$2" ];
-    then
-        cd "$DIR" || exit
-        $EDITOR
-        exit
-    fi
-    
-    $EDITOR + "$DIR/$2"
-    ;;
+	if [ -z "$2" ];
+	then
+		cd "$DIR" || exit
+		$EDITOR
+
+		exit 0
+	fi
+	
+	$EDITOR + "$DIR/$2"
+	;;
 
 "-s" | "--show")
 	clear
 	for i in $(find "$DIR"/* | sort -r);
 	do
-	    echo "--------"
-	    echo "[$i]"
-	    echo "--------"
-	    if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ];
-	    then
-	        echo "-- cannot read this file --"
-	    else
-	        head -n "$LINE" "$i"
-	    fi
-	    echo
+		echo "[$i]"
+
+		if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ];
+		then
+			printf "%s\n" "-- cannot read this file --"
+		else
+			head -n "$LINE" "$i"
+			echo
+		fi
+		printf "\n%s\n" "-------------"
+
 	done | less
 	;;
 
-"-h" | "--help")
-    help
-    exit 0
+"" | "-h" | "--help")
+	help_msg
 	;;
 
 *)
-    printf "%s\n\n" "Invalid argument!"
-    help
-    exit 1
+	printf "%s\n\n" "Invalid argument!"
+	help_msg
+
+	exit 1
 	;;
 esac
+
+exit 0
+

@@ -1,22 +1,23 @@
 #!/bin/sh
 
 update(){
-    SUM=0
-    for ARG
-    do
-        read -r i < "$ARG"
-        SUM=$(( SUM + i ))
-    done
-    
-    CACHE=${XDG_CACHE_HOME:-$HOME/.cache}/${1##*/}
-
-    [ -f "$CACHE" ] && read -r OLD < "$CACHE" || OLD=0
-    
-    printf "%d\n" "$SUM" > "$CACHE"
-    printf "%d\n" $(( SUM - OLD ))
+	SUM=0
+	for ARG
+	do
+		read -r i < "$ARG"
+		SUM=$(( SUM + i ))
+	done
+	
+	CACHE=${XDG_CACHE_HOME:-$HOME/.cache}/${1##*/}
+	
+	[ -f "$CACHE" ] && read -r OLD < "$CACHE" || OLD=0
+	
+	printf "%d\n" "$SUM" > "$CACHE"
+	printf "%d\n" $(( SUM - OLD ))
 }
 
 RX=$(update /sys/class/net/[ew]*/statistics/rx_bytes)
 TX=$(update /sys/class/net/[ew]*/statistics/tx_bytes)
 
 printf "%4sB %4sB" "$(numfmt --to=iec "$TX")" "$(numfmt --to=iec "$RX")"
+

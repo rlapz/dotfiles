@@ -10,20 +10,21 @@ CMD="$(dmenu_path | dmenu "$@" -i -l 20 -fn "xos4 Terminus:size=11" -p "Run:")"
 
 case $CMD in 
 #">"* )
-#    luakit "https://google.com/search?&q=$(echo $cmd | sed "s/>//")"
-#    ;; 
+#	luakit "https://google.com/search?&q=$(echo $cmd | sed "s/>//")"
+#	;; 
 
 ">"* )
-    luakit "$(echo "$CMD" | sed "s/>//")"
-    ;; 
+	luakit "$(echo "$CMD" | sed "s/>//")"
+	;; 
 
 *"!" )
-    $TERMCMD "$(printf "%s" "$CMD" | cut -d '!' -f 1)"
-    ;; 
+	$TERMCMD "$(printf "%s" "$CMD" | cut -d '!' -f 1)"
+	;; 
 
 * )
-    $CMD
-    ;; 
+	$CMD
+	;; 
 esac 
 
-exit
+exit 0
+

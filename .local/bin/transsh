@@ -9,7 +9,7 @@
 LANG_TARGET="id"
 TEXT_SRC=""
 
-help()
+help_msg()
 {
     cat <<EOF
 transsh - POSIX script shell translation helper
@@ -27,78 +27,81 @@ EOF
 
 get_text()
 {
-    TEXT_SRC=$(xsel -p 2>/dev/null)
-
+	EXT_SRC=$(xsel -p 2>/dev/null)
 }
 
 input_text()
 {
-    printf "Input text: "
-    read -r TEXT_SRC
+	printf "Input text: "
+	read -r TEXT_SRC
 }
 
 translate()
 {
-    while [ -z "$TEXT_SRC" ]
-    do
-        input_text
-    done
-    
-    # engine = moetranslate
-    # https://github.com/rlapz/moetranslate
-    moetranslate -f "auto:${LANG_TARGET}" "$TEXT_SRC" | less -R
+	while [ -z "$TEXT_SRC" ]
+	do
+		input_text
+	done
+	
+	# engine = moetranslate
+	# https://github.com/rlapz/moetranslate
+	moetranslate -f "auto:${LANG_TARGET}" "$TEXT_SRC" | less -R
 }
 
 speak()
 {
-    while [ -z "$TEXT_SRC" ]
-    do
-        input_text
-    done
-
-    S_LANG_TARGET=$(moetranslate -d "$TEXT_SRC" | awk '{print $1}')
- 
-    URL="http://translate.google.com/translate_tts?
-        ie=UTF-8&tl=$S_LANG_TARGET&q=$TEXT_SRC&client=tw-ob"
-
-    USERAGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5)\
-        AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"
-
-    TEMP="/tmp/trans_speak"
-    
-    wget -q -U "$USERAGENT" "$URL" -O "$TEMP"
-    
-    mpv "$TEMP" 1>/dev/null
-    rm "$TEMP"
+	while [ -z "$TEXT_SRC" ]
+	do
+		input_text
+	done
+	
+	S_LANG_TARGET=$(moetranslate -d "$TEXT_SRC" | awk '{print $1}')
+	
+	URL="http://translate.google.com/translate_tts?
+	    ie=UTF-8&tl=$S_LANG_TARGET&q=$TEXT_SRC&client=tw-ob"
+	
+	USERAGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5)\
+	    AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31"
+	
+	TEMP="/tmp/trans_speak"
+	
+	wget -q -U "$USERAGENT" "$URL" -O "$TEMP"
+	
+	mpv "$TEMP" 1>/dev/null
+	rm "$TEMP"
 }
 
 case "$1" in
 "-c" | "--clipboard")
-    get_text
-    translate
-    ;;
+	get_text
+	translate
+	;;
 
 "-i" | "--input")
-    translate
-    ;;
+	translate
+	;;
 
 "-s" | "--speak")
-    get_text
-    speak
-    ;;
-"-I" | "--inputspeak")
-    speak
-    ;;
+	get_text
+	speak
+	;;
 
-"-h" | "--help")
-    help
-    exit 0
-    ;;
+"-I" | "--inputspeak")
+	speak
+	;;
+
+"" | "-h" | "--help")
+	help_msg
+	;;
 
 *)
     printf "%s\n" "Invalid argument!"
-    help
+    help_msg
+
     exit 1
     ;;
+
 esac
+
+exit 0
 

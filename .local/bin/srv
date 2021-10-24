@@ -2,22 +2,26 @@
 
 __SU="doas" # or sudo
 
-help()
+#---------------------------------------------------#
+help_msg()
 {
-    cat << EOF
+	cat << EOF
 srv [OPT] [SERVICE]
     -s       - Start service
     -S       - Stop service
-    -r       - restart service
+    -r       - Restart service
+    -l       - Show all serices
     -add     - Add new serivce
     -del     - Delete service
     -stat    - Show status
     -show    - Show all services
+    -help    - Show help
 
 Examples:
      srv -s     SERVICE
      srv -S     SERVICE
      srv -r     SERVICE
+     srv -l
      srv -add   SERVICE
      srv -del   SERVICE
      srv -stat  SERVICE
@@ -26,58 +30,115 @@ Examples:
 EOF
 }
 
-chk_arg2()
+err()
 {
-    if [ -z "$2" ]
-    then
-        printf "%s\n\n" "Invalid argument!"
-        help
-        
-        exit 1
-    fi
+	printf "%s\n" "Invalid argument!" >&2
+	help_msg >&2
+
+	exit 1
 }
 
+start_srv()
+{
+	[ -z "$2" ] && err
 
+	$__SU rc-service "$2" start
+}
+
+stop_srv()
+{
+	[ -z "$2" ] && err
+
+	$__SU rc-service "$2" stop
+}
+
+restart_srv()
+{
+	[ -z "$2" ] && err
+
+	$__SU rc-service "$2" restart
+}
+
+list_srv()
+{
+	rc-service -l | column
+}
+
+add_srv()
+{
+	[ -z "$2" ] && err
+
+	$__SU rc-update add "$2"
+}
+
+del_srv()
+{
+	[ -z "$2" ] && err
+
+	$__SU rc-update delete "$2"
+}
+
+stat_srv()
+{
+	if [ -n "$2" ]
+	then
+		rc-service "$2" status
+	else
+		rc-status
+	fi
+}
+
+show_srv()
+{
+	rc-update show
+}
+
+#---------------------------------------------------#
 case "$1" in
 "-s")
-    chk_arg2 "$@"
-    $__SU rc-service "$2" start
-    ;;
+	start_srv "$@"
+	;;
 
 "-S")
-    chk_arg2 "$@"
-    $__SU rc-service "$2" stop
-    ;;
+	stop_srv "$@"
+        ;;
 
 "-r")
-    chk_arg2 "$@"
-    $__SU rc-service "$2" restart
-    ;;
+	restart_srv "$@"
+	;;
+
+"-l")
+	list_srv "$@"
+	;;
 
 "-add")
-    chk_arg2 "$@"
-    $__SU rc-update add "$2"
-    ;;
+	add_srv "$@"
+	;;
 
 "-del")
-    chk_arg2 "$@"
-    $__SU rc-update delete "$2"
-    ;;
+	del_srv "$@"
+	;;
 
 "-stat")
-    chk_arg2 "$@"
-    rc-service "$2" status
-    ;;
+	stat_srv "$@"
+	;;
 
 "-show")
-    rc-update show
-    ;;
+	show_srv "$@"
+	;;
 
-*)
-    help
-
-    exit 1
-    ;;
+"-help" | *)
+	help_msg
+	;;
 esac
+
+ret="$?"
+
+if [ "$ret" -ne "0" ]
+then
+	printf "%s\n" "Error occured" >&2
+
+	exit 1
+fi
 
 exit 0

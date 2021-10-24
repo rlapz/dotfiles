@@ -7,11 +7,13 @@ readonly LINE=5
 readonly SEP="-----------"
 
 [ ! -d "$DIR" ] && mkdir "$DIR"
+
 cd "$DIR" || exit
 
-help()
+
+help_msg()
 {
-    cat << EOF
+	cat << EOF
 Moe Diary
 
 Usage: moediary [OPT]"
@@ -27,56 +29,59 @@ EOF
 
 case "$1" in
 "-t" | "--today")
-    DATE=$(date +"%d-%m-%Y")
-    
-    if [ ! -f "$DIR/${DATE}.txt" ]
-    then
-        printf "%s\n%s\n%s\n\n\n" "$SEP" "$DATE" "$SEP" > "$DIR/${DATE}.txt"
-    fi
-    
-    $EDITOR + "$DIR/${DATE}.txt"
-    ;;
-    
+	DATE=$(date +"%d-%m-%Y")
+	
+	if [ ! -f "$DIR/${DATE}.txt" ]
+	then
+		printf "%s\n%s\n%s\n\n\n" "$SEP" "$DATE" "$SEP" > "$DIR/${DATE}.txt"
+	fi
+	
+	$EDITOR + "$DIR/${DATE}.txt"
+	;;
+
 "-y" | "--yesterday" | "-o" | "--open" )
-    if [ "$1" = "-o" ] || [ "$1" = "--open" ]
-    then
-        [ -z "$2" ] && echo "Filename empty!" && exit 1
-        DATE="$2"
-    else
-        DATE="$(date --date="yesterday"  +"%d-%m-%Y").txt"
-    fi
-    
-    if [ -f "$DIR/${DATE}" ]
-    then
-        $EDITOR + "$DIR/${DATE}"
-    fi
-    
-    echo "Diary \"$DATE\" not found"
-    ;;
+	if [ "$1" = "-o" ] || [ "$1" = "--open" ]
+	then
+		[ -z "$2" ] && echo "Filename empty!" && exit 1
+		DATE="$2"
+	else
+		DATE="$(date --date="yesterday"  +"%d-%m-%Y").txt"
+	fi
+	
+	if [ -f "$DIR/${DATE}" ]
+	then
+		$EDITOR + "$DIR/${DATE}"
+	fi
+	
+	echo "Diary \"$DATE\" not found"
+	;;
 
 "-s" | "--show")
-    clear
-    for i in $(find "$DIR"/* | sort -r)
-    do
-        echo "[${i##*/}]"
-        if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ]
-        then
-            echo "-- cannot read this file --"
-        else
-            head -n "$LINE" "$i"
-        fi
-        echo;
-    done | less
-    ;;
+	clear
+	for i in $(find "$DIR"/* | sort -r)
+	do
+		echo "[${i##*/}]"
+		if [ "$( file -b --mime-type "$i" | sed 's|/.*||')" != "text" ]
+		then
+			echo "-- cannot read this file --"
+		else
+			head -n "$LINE" "$i"
+		fi
+		echo;
+	done | less
+	;;
 
-"-h" | "--help")
-    help
-    exit 0
-    ;;
+"" | "-h" | "--help")
+	help_msg
+	;;
 
 *)
-    printf "%s\n\n" "Invalid argument!"
-    help
-    exit 1
-    ;;
+	printf "%s\n\n" "Invalid argument!"
+	help_msg
+
+	exit 1
+	;;
 esac
+
+exit 0
+

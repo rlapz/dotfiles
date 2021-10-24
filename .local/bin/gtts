@@ -11,8 +11,8 @@ readonly TEMP="/tmp/trans_speak.mp3"
 
 if [ -z "$LANG" ] || [ -z "$TEXT" ]
 then
-    printf "%s\n\n" "$0 [LANG_TARGET] [TEXT]" && 
-    exit 1
+	printf "%s\n\n" "$0 [LANG_TARGET] [TEXT]" && 
+	exit 1
 fi
 
 wget -q -U "$USERAGENT" "$URL" -O "$TEMP"

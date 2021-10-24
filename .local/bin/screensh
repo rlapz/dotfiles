@@ -8,11 +8,10 @@ DIR="$HOME/Pictures/Screenshots"
 
 [ ! -d "$DIR" ] && mkdir -p "$DIR"
 
-OPT="$1"
 
-help()
+help_msg()
 {
-    cat << EOF
+	cat << EOF
 Screensh - Imagemagick-screenshot tool
 
 Usage: screensh [OPTIONS]
@@ -25,27 +24,31 @@ Example: screensh --select
 EOF
 }
 
-case $OPT in
+
+case "$1" in
 "-s" | "--select")
-    import -frame -border "$DIR/$DATE.png"
-    ;;
+	import -frame -border "$DIR/$DATE.png"
+	;;
 
 "-w" | "--selectwin")
-    import -screen -frame -border "$DIR/$DATE.png"
-    ;;
+	import -screen -frame -border "$DIR/$DATE.png"
+	;;
 
 "-f" | "--windowfocus")
     import -screen -frame -border -window "$WINDOWID" "$DIR/$DATE.png"
     ;;
 
-"-h" | "--help")
-    help
-    exit 0
-    ;;
+"" | "-h" | "--help")
+	help_msg
+	;;
 
 *)
     printf "%s\n\n" "Invalid argument!"
-    help
+    help_msg
+
     exit 1
     ;;
 esac
+
+exit 0
+

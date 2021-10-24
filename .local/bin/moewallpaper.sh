@@ -9,6 +9,6 @@ W_FILES=$(ls)
 
 for i in $W_FILES
 do
-    xwallpaper --zoom "$i"
-    sleep 30
+	xwallpaper --zoom "$i"
+	sleep 30
 done
