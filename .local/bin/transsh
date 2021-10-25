@@ -27,7 +27,7 @@ EOF
 
 get_text()
 {
-	EXT_SRC=$(xsel -p 2>/dev/null)
+	TEXT_SRC=$(xsel -p 2>/dev/null)
 }
 
 input_text()

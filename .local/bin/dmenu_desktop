@@ -17,5 +17,8 @@ then
 	done
 fi
 
-sort "$CACHE_F" | sed 's/.desktop//' | dmenu "$@" -i -l 20 -fn "$FONT" -p "->" | xargs gtk-launch 2>/dev/null
+sort "$CACHE_F" \
+	| sed 's/.desktop//' \
+	| dmenu "$@" -i -l 20 -fn "$FONT" -p "->" \
+	| xargs gtk-launch 2>/dev/null
 

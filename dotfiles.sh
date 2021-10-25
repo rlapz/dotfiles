@@ -14,6 +14,15 @@ readonly D_BIN=$D_DIR/.local/bin
 readonly D_CONFIG=$D_DIR/.config
 
 
+case "$1" in
+"cd")
+	cd "$D_DIR"
+	$SHELL
+	exit 0
+	;;
+esac
+
+
 # ------------------------------------------------------
 #                      Check Dirs
 # ------------------------------------------------------
@@ -47,7 +56,7 @@ readonly CONFIG_FILES="alacritty dunst sxhkd"
 readonly BIN_FILES="= brightness clock locknow dmenu_desktop dmenu_run_i \
                     moediary moenotes screensh netspeed moewallpaper \
                     moewallpaper.c moewallpaper.sh sp transsh gtts icetile ipinfo \
-                    urlencode.c urlencode srv chdns
+                    urlencode.c urlencode srv chdns pinga
                     "
 
 # backup this file
