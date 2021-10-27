@@ -15,10 +15,10 @@ help_msg()
 Screensh - Imagemagick-screenshot tool
 
 Usage: screensh [OPTIONS]
-       -s --select       - Mouse selection
-       -w --selectwin    - Select windows
+       -s --select       - Select with the mouse
+       -w --selectwin    - Select from the windows
        -f --windowfocus  - Focused window only
-       -h --help         - Display this help and exit
+       -h --help         - Show help
 
 Example: screensh --select 
 EOF

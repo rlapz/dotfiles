@@ -13,10 +13,10 @@ help_msg()
 Moe Notes
 
 Usage: moenotes [OPT]
-       -s --show              - show all notes
-       -d --delete [filename] - delete note
-       -o --open [filename]   - new/open/edit note
-       -h --help              - show help
+       -s --show              - Show all notes
+       -d --delete [filename] - Delete note
+       -o --open [filename]   - New/open/edit a note
+       -h --help              - Show help
 
 Example: moenotes --open file1.txt
 EOF

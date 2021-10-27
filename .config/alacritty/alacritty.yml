@@ -19,8 +19,8 @@ background_opacity: 0.9
 
 font:
   normal:
-    family: Dina
-  size: 9
+    family: Terminus
+  size: 10
 
     #scrolling:
     #  history: 5000

@@ -17,11 +17,11 @@ help_msg()
 Moe Diary
 
 Usage: moediary [OPT]"
-       -s --save            - show all diaries
-       -o --open [filename] - open/edit spesific diary
-       -t --today           - add/edit today's diary
-       -y --yesterday       - add/edit yesterday's diary
-       -h --help            - show help
+       -s --save            - Show all diaries
+       -o --open [filename] - Open/edit spesific diary
+       -t --today           - Add/edit today's diary
+       -y --yesterday       - Add/edit yesterday's diary
+       -h --help            - Show help
 
 Example: moediary --show
 EOF

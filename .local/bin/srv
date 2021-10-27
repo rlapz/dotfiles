@@ -7,13 +7,13 @@ help_msg()
 {
 	cat << EOF
 srv [OPT] [SERVICE]
-    -s       - Start service
-    -S       - Stop service
-    -r       - Restart service
+    -s       - Start the service
+    -S       - Stop the service
+    -r       - Restart the service
     -l       - Show all serices
-    -add     - Add new serivce
-    -del     - Delete service
-    -stat    - Show status
+    -add     - Add new service
+    -del     - Delete the service
+    -stat    - Show the status
     -show    - Show all services
     -help    - Show help
 

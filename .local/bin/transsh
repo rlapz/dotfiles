@@ -15,10 +15,10 @@ help_msg()
 transsh - POSIX script shell translation helper
 
 Usage: transsh [OPT]
-       -c  --clipboard    - Load text from clipboard
+       -c  --clipboard    - Load text from the clipboard
        -i  --input        - Input text manually
-       -s  --speak        - Play audio
-       -I  --inputspeak   - Input text manually and play audio
+       -s  --speak        - Play the audio
+       -I  --inputspeak   - Input text manually and play the audio
        -h  --help         - Show help
        
 Example: transsh --clipboard
