@@ -5,23 +5,37 @@ import os
 
 
 srv_list = (
-    "8.8.8.8",
-    "google.com",
+    "8.8.8.8"     ,
+    "google.com"  ,
     "facebook.com",
-    "reddit.com",
+    "reddit.com"  ,
 )
 
 
-if len(sys.argv) != 2:
+def show_help():
     print("pinga.py [INDEX]\n")
 
     for i, arr in enumerate(srv_list):
         print(f"{[i]} Pinging {arr}")
 
-    sys.exit(0)
 
-try:
-    os.system(f'ping {srv_list[int(sys.argv[1])]}')
+def run():
+    try:
+        arg = int(sys.argv[1])
 
-except ValueError:
-    print("Invalid argument")
+        if arg >= len(srv_list):
+            raise ValueError
+
+        os.system(f"ping {srv_list[arg]}")
+
+    except ValueError:
+        print("Invalid argument")
+        show_help()
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        show_help()
+    else:
+        run()

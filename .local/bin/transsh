@@ -16,12 +16,16 @@ transsh - POSIX script shell translation helper
 
 Usage: transsh [OPT]
        -c  --clipboard    - Load text from the clipboard
+             --intr         \` Interactive input mode
        -i  --input        - Input text manually
+             --intr         \` Interactive input mode
        -s  --speak        - Play the audio
        -I  --inputspeak   - Input text manually and play the audio
        -h  --help         - Show help
        
-Example: transsh --clipboard
+Examples:
+  transsh --clipboard --intr
+  transsh --clipboard
 EOF
 }
 
@@ -45,7 +49,13 @@ translate()
 	
 	# engine = moetranslate
 	# https://github.com/rlapz/moetranslate
-	moetranslate -f "auto:${LANG_TARGET}" "$TEXT_SRC" | less -R
+
+	if [ -n "$2" ]
+	then
+		[ "$2" = "--intr" ] && moetranslate -if "auto:${LANG_TARGET}" "$TEXT_SRC"
+	else
+		moetranslate -f "auto:${LANG_TARGET}" "$TEXT_SRC" | less -R
+	fi
 }
 
 speak()
@@ -74,11 +84,12 @@ speak()
 case "$1" in
 "-c" | "--clipboard")
 	get_text
-	translate
+
+	translate "$@"
 	;;
 
 "-i" | "--input")
-	translate
+	translate "$@"
 	;;
 
 "-s" | "--speak")

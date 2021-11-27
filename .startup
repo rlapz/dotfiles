@@ -4,6 +4,7 @@ sleep 1 &&
 
 #moewallpaper -d 30 ~/Pictures/Wallpapers &
 #moewallpaper.sh &
+feh --bg-fill ~/Pictures/Wallpapers/sugarlife.png &
 pipewire &
 pipewire-pulse &
 sleep 1 && pipewire-media-session &
@@ -15,7 +16,7 @@ clipmenud &
 /usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &
 sleep 1; xset dpms 180 190 200; xss-lock slock &
 
-#sleep 3 && fcitx5 &
+fcitx5 &
 
 #calcurse --daemon &
 #appimagelaucherd &

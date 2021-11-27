@@ -12,7 +12,7 @@
 #    rofi -m -4 -show drun
 #
 mod4 + semicolon
-    clipmenu -m -4 -z 700 -fn "xos4 Terminus:size=11" -p "Clipboard:"
+    clipmenu -m -4 -z 700 -fn "Terminus:size=11" -p "Clipboard:"
 
 alt+ ctrl + l
     locknow
@@ -33,6 +33,13 @@ mod4 + shift + e
 
 mod4 + shift + s
     st -t transsh -e transsh --inputspeak
+
+mod4 + w
+    $TERMINAL --title transsh -e transsh --clipboard --intr
+
+mod4 + shift + w
+    $TERMINAL --title transsh -e transsh --input --intr
+    
 
 # Screenshot
 Print

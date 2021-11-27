@@ -5,7 +5,7 @@
  *
  * -----------------------------------------------
  * How to compile:
- *   cc -Wall -Wextra moewallpaper.c -o moewallpaper -Os
+ *   cc -Wall -Wextra -pedantic moewallpaper.c -o moewallpaper -Os
  *
  * Don't forget to install Feh
  */
@@ -50,23 +50,16 @@ main(int argc, char *argv[])
 	/* argument parser */
 	if (argc == 2 && (strcmp(argv[1], "-h") == 0)) {
 		HELP(stdout);
+
 		return EXIT_SUCCESS;
 	}
 
-	if (argc != 4 || (strcmp(argv[1], "-d") != 0)) {
-		HELP(stderr);
-		return EXIT_FAILURE;
-	}
+	if (argc != 4 || (strcmp(argv[1], "-d") != 0))
+		goto err0;
 
 	delay = (unsigned int)strtol(argv[2], NULL, 10);
-	if (errno != 0)
-		return EXIT_FAILURE;
-
-	if (delay < 5) {
-		HELP(stderr);
-
-		return EXIT_FAILURE;
-	}
+	if (errno != 0 || delay < 5)
+		goto err0;
 
 
 	dir = argv[3];
@@ -77,23 +70,25 @@ main(int argc, char *argv[])
 			MAX_DIR_LEN
 		);
 
-		return EXIT_FAILURE;
+		goto err1;
 	}
 
 	/* check directory exist or not */
 	if (stat(dir, &s_file) != 0) {
 		perror(dir);
-		return EXIT_FAILURE;
+
+		goto err1;
 	}
 
 	/* check if the last argument is directory or not */
 	if (S_ISREG(s_file.st_mode)) {
 		fprintf(stderr, "\"%s\" is not a directory\n", dir);
-		return EXIT_FAILURE;
+
+		goto err1;
 	}
 
 	if (snprintf(cmd, SIZE_CMD, "%s %s %s", FEH, FEH_ARGS, dir) < 0)
-		return EXIT_FAILURE;
+		goto err1;
 
 	printf("Wallpaper dir\t: %s\n"
 		"CMD\t\t: %s\n"
@@ -106,10 +101,18 @@ main(int argc, char *argv[])
 		if (system(cmd) != 0) {
 			perror(NULL);
 
-			return EXIT_FAILURE;
+			goto err1;
 		}
+
 		sleep(delay);
 	}
 
 	return EXIT_SUCCESS;
+
+err0:
+	HELP(stderr);
+
+err1:
+	return EXIT_FAILURE;
 }
+

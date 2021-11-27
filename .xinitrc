@@ -16,7 +16,8 @@ export XMODIFIERS=@im=$INPUT
 export CM_SELECTIONS=clipboard
 export DESKTOP_SESSION=gnome
 export QT_QPA_PLATFORMTHEME=gtk2
-export TERMINAL="alacritty"
+#export TERMINAL="alacritty"
+export TERMINAL="lxterminal"
 export VISUAL="vim"
 export WEB_BROWSER=firefox --private
 

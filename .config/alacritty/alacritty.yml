@@ -20,7 +20,7 @@ background_opacity: 0.9
 font:
   normal:
     family: Terminus
-  size: 10
+  size: 9 
 
     #scrolling:
     #  history: 5000
